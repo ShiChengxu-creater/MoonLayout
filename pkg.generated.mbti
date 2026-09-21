@@ -1,12 +1,55 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "hbYlj/moonlayout"
 
+import {
+  "hbYlj/moonlayout/align",
+  "hbYlj/moonlayout/layout",
+  "hbYlj/moonlayout/segment",
+  "hbYlj/moonlayout/wrap",
+}
+
 // Values
+pub fn align_lines(Array[@wrap.Line], Int, @align.Alignment) -> Array[String]
+
+pub fn display_width(String, ambiguous_wide? : Bool, tab_width? : Int) -> Int
+
+pub fn is_breakable_at(String, Int) -> Bool
+
+pub fn layout(String, @layout.LayoutStyle) -> Array[@wrap.Line]
+
+pub fn line_break_opportunities(String) -> Array[Int]
+
+pub fn segments(String, @segment.SegmentKind) -> Array[(Int, Int)]
+
+pub fn sentence_boundaries(String) -> Array[Int]
+
+pub fn sentences(String) -> Array[String]
+
+pub fn word_boundaries(String) -> Array[Int]
+
+pub fn words(String) -> Array[String]
+
+pub fn wrap(String, Int, opts? : @wrap.WrapOptions) -> Array[@wrap.Line]
 
 // Errors
 
 // Types and methods
 
 // Type aliases
+pub using @align {type Alignment}
+
+pub using @wrap {type BreakKind}
+
+pub using @wrap {type BreakPolicy}
+
+pub using @layout {type LayoutStyle}
+
+pub using @wrap {type Line}
+
+pub using @segment {type SegmentKind}
+
+pub using @wrap {type WrapAlgorithm}
+
+pub using @wrap {type WrapOptions}
 
 // Traits
