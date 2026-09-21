@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "hbYlj/moonlayout/internal/conformance"
+
+// Values
+pub fn check(String, (String) -> Array[Int]) -> (Int, Array[String]) raise
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
