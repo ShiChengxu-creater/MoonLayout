@@ -1,0 +1,23 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [native, wasm-gc, js]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: moonbitlang/moonbit-toolchain@v1
+      - run: moon version --all
+      - run: moon fmt --check
+      - run: moon check --target ${{ matrix.target }} --deny-warn
+      - run: moon test --target ${{ matrix.target }} --deny-warn
+      - run: moon info
+      - run: git diff --exit-code -- '*.mbti'

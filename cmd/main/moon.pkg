@@ -1,0 +1,5 @@
+// import {
+//   "ShiChengxu/MoonLayout" @lib,
+// }
+
+pkgtype(kind: "executable")
