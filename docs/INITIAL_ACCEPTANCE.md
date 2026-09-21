@@ -9,7 +9,7 @@ Source of requirements: goal.md, sections 9 and 11 (M0–M4).
 | M2 | UAX #14, complete Unicode 17 LineBreakTest | Passed: 19,338 / 19,338 cases on all three targets |
 | M3a | UAX #29 word boundaries, complete WordBreakTest | Passed: 1,944 / 1,944 cases |
 | M3b | UAX #29 sentence boundaries, complete SentenceBreakTest | Passed: 512 / 512 cases; all three suites verified on three targets |
-| M4a | Grapheme-safe greedy wrapping, UTF-8 source ranges | Pending |
+| M4a | Grapheme-safe greedy wrapping, UTF-8 source ranges | Passed: normal/edge/policy/property tests on three targets |
 | M4b | Left/right/center/justify including CJK gaps | Pending |
 | M4c | Layout facade, four examples, executable README | Pending |
 | M4d | Three backend checks/tests, external consumer, packaging | Pending |

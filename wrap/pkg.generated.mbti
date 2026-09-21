@@ -1,0 +1,54 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "hbYlj/moonlayout/wrap"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn display_width(String, ambiguous_wide? : Bool, tab_width? : Int) -> Int
+
+pub fn wrap(String, Int, opts? : WrapOptions) -> Array[Line]
+
+// Errors
+
+// Types and methods
+pub(all) enum BreakKind {
+  Soft
+  Hard
+  Forced
+  End
+} derive(Eq, @debug.Debug)
+
+pub(all) enum BreakPolicy {
+  Unicode
+  Word
+  Sentence
+  Grapheme
+} derive(Eq, @debug.Debug)
+
+pub(all) struct Line {
+  start : Int
+  end : Int
+  source : String
+  text : String
+  width : Int
+  break_kind : BreakKind
+  aligned_text : String
+  ambiguous_wide : Bool
+} derive(Eq, @debug.Debug)
+
+pub(all) enum WrapAlgorithm {
+  Greedy
+} derive(Eq, @debug.Debug)
+
+pub(all) struct WrapOptions {
+  ambiguous_wide : Bool
+  break_policy : BreakPolicy
+  tab_width : Int
+} derive(Eq, @debug.Debug)
+pub fn WrapOptions::new(ambiguous_wide? : Bool, break_policy? : BreakPolicy, tab_width? : Int) -> Self
+
+// Type aliases
+
+// Traits
