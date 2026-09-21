@@ -1,0 +1,8 @@
+import {
+  "hbYlj/moonlayout/linebreak",
+  "hbYlj/moonlayout/segment",
+  "hbYlj/moonlayout/break_data" @data,
+  "hbYlj/moonlayout/internal/text",
+  "kawaz/grapheme",
+  "moonbit-community/unicodewidth" @width,
+}
