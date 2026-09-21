@@ -1,0 +1,7 @@
+import {
+  "hbYlj/moonlayout/wrap",
+  "hbYlj/moonlayout/linebreak",
+  "hbYlj/moonlayout/break_data" @data,
+  "hbYlj/moonlayout/internal/text",
+  "kawaz/grapheme",
+}
