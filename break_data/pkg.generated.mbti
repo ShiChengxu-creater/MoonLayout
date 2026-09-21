@@ -1,0 +1,165 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "hbYlj/moonlayout/break_data"
+
+import {
+  "moonbitlang/core/debug",
+}
+
+// Values
+pub fn east_asian_width(Int) -> EastAsianWidth
+
+pub fn emoji_property(Int) -> EmojiProperty
+
+pub fn general_category(Int) -> GeneralCategory
+
+pub fn line_break(Int) -> LineBreak
+
+pub fn sentence_break(Int) -> SentenceBreak
+
+pub fn word_break(Int) -> WordBreak
+
+// Errors
+
+// Types and methods
+pub(all) enum EastAsianWidth {
+  A
+  F
+  H
+  N
+  W
+  Na
+} derive(Eq, @debug.Debug)
+
+pub(all) enum EmojiProperty {
+  Other
+  Extended_Pictographic
+} derive(Eq, @debug.Debug)
+
+pub(all) enum GeneralCategory {
+  Cc
+  Cf
+  Cn
+  Co
+  Cs
+  Ll
+  Lm
+  Lo
+  Lt
+  Lu
+  Mc
+  Me
+  Mn
+  Nd
+  Nl
+  No
+  Pc
+  Pd
+  Pe
+  Pf
+  Pi
+  Po
+  Ps
+  Sc
+  Sk
+  Sm
+  So
+  Zl
+  Zp
+  Zs
+} derive(Eq, @debug.Debug)
+
+pub(all) enum LineBreak {
+  AI
+  AK
+  AL
+  AP
+  AS
+  B2
+  BA
+  BB
+  BK
+  CB
+  CJ
+  CL
+  CM
+  CP
+  CR
+  EB
+  EM
+  EX
+  GL
+  H2
+  H3
+  HH
+  HL
+  HY
+  ID
+  IN
+  IS
+  JL
+  JT
+  JV
+  LF
+  NL
+  NS
+  NU
+  OP
+  PO
+  PR
+  QU
+  RI
+  SA
+  SG
+  SP
+  SY
+  VF
+  VI
+  WJ
+  XX
+  ZW
+  ZWJ
+} derive(Eq, @debug.Debug)
+
+pub(all) enum SentenceBreak {
+  CR
+  LF
+  Sp
+  Sep
+  ATerm
+  Close
+  Lower
+  Other
+  STerm
+  Upper
+  Extend
+  Format
+  Numeric
+  OLetter
+  SContinue
+} derive(Eq, @debug.Debug)
+
+pub(all) enum WordBreak {
+  CR
+  LF
+  ZWJ
+  Other
+  Extend
+  Format
+  MidNum
+  ALetter
+  Newline
+  Numeric
+  Katakana
+  MidLetter
+  MidNumLet
+  WSegSpace
+  Double_Quote
+  ExtendNumLet
+  Single_Quote
+  Hebrew_Letter
+  Regional_Indicator
+} derive(Eq, @debug.Debug)
+
+// Type aliases
+
+// Traits

@@ -5,7 +5,7 @@ Source of requirements: goal.md, sections 9 and 11 (M0–M4).
 | Milestone | Acceptance | Status |
 | --- | --- | --- |
 | M0 | Repository identity, pinned dependencies, data and provenance | Verified baseline (no functional tests yet) |
-| M1 | Native UCD generator, compressed property tables, idempotence | Pending |
+| M1 | Native UCD generator, compressed property tables, idempotence | Passed: 3 parser + 2 lookup tests; three targets; idempotent |
 | M2 | UAX #14, complete Unicode 17 LineBreakTest | Pending |
 | M3a | UAX #29 word boundaries, complete WordBreakTest | Pending |
 | M3b | UAX #29 sentence boundaries, complete SentenceBreakTest | Pending |
