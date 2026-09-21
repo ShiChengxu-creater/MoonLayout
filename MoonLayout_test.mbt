@@ -1,3 +1,10 @@
-// Blackbox tests run against the package's public API. Use `@MoonLayout` to import.
-// Prefer high-level behaviors over implementation details.
-// Run `moon test` to execute and `moon test --update` to refresh snapshots.
+///|
+test "valid/root consumer API" {
+  let lines = @moonlayout.layout(
+    "Hello 世界",
+    @moonlayout.LayoutStyle::new(8),
+  )
+  assert_eq(lines.map(fn(l) { l.text }), ["Hello 世", "界"])
+  assert_eq(@moonlayout.words("Hello 世界"), ["Hello", "世", "界"])
+  assert_eq(@moonlayout.line_break_opportunities("你好"), [3, 6])
+}
