@@ -11,7 +11,7 @@ Source of requirements: goal.md, sections 9 and 11 (M0–M4).
 | M3b | UAX #29 sentence boundaries, complete SentenceBreakTest | Passed: 512 / 512 cases; all three suites verified on three targets |
 | M4a | Grapheme-safe greedy wrapping, UTF-8 source ranges | Passed: normal/edge/policy/property tests on three targets |
 | M4b | Left/right/center/justify including CJK gaps | Passed: widths, overflow, emoji, CJK and final/hard-line policy |
-| M4c | Layout facade, four examples, executable README | Pending |
+| M4c | Layout facade, four examples, executable README | Passed: 12 example runs; README test; three-backend external consumer |
 | M4d | Three backend checks/tests, external consumer, packaging | Pending |
 | Release | Public repository and mooncakes 0.1.0 install | Not published |
 
