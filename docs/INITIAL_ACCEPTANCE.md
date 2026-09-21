@@ -7,7 +7,7 @@ Source of requirements: goal.md, sections 9 and 11 (M0–M4).
 | M0 | Repository identity, pinned dependencies, data and provenance | Verified baseline (no functional tests yet) |
 | M1 | Native UCD generator, compressed property tables, idempotence | Passed: 3 parser + 2 lookup tests; three targets; idempotent |
 | M2 | UAX #14, complete Unicode 17 LineBreakTest | Passed: 19,338 / 19,338 cases on all three targets |
-| M3a | UAX #29 word boundaries, complete WordBreakTest | Pending |
+| M3a | UAX #29 word boundaries, complete WordBreakTest | Passed: 1,944 / 1,944 cases |
 | M3b | UAX #29 sentence boundaries, complete SentenceBreakTest | Pending |
 | M4a | Grapheme-safe greedy wrapping, UTF-8 source ranges | Pending |
 | M4b | Left/right/center/justify including CJK gaps | Pending |
