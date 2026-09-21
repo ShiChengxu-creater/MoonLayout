@@ -28,4 +28,5 @@ description = "Unicode 17 paragraph layout, line breaking and word/sentence segm
 import {
   "kawaz/grapheme@0.10.4",
   "moonbit-community/unicodewidth@0.2.1",
+  "moonbitlang/x@0.4.44",
 }
