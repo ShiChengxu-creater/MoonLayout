@@ -1,6 +1,6 @@
 # MoonLayout
 
-纯 MoonBit 的 Unicode 17.0.0 段落布局库，支持 native、wasm-gc、JavaScript。
+纯 MoonBit 的 Unicode 17.0.0 段落布局库，支持 native、wasm-gc、JavaScript
 
 ## 最小示例
 
@@ -34,9 +34,7 @@ test "README minimum layout" {
 - 对齐填充到目标宽度；不截断溢出。末行／硬换行行不拉伸两端对齐。
 - `words` 仅返回含字母或数字的段；`segments(..., Word)` 保留全部段。
 
-字素切分依赖 `kawaz/grapheme@0.10.4`；显示宽度依赖`moonbit-community/unicodewidth@0.2.1`。宽度按字素的等宽显示列相加，不是字体整形后的像素宽度。
-
-宽度依赖内部数据版本为 Unicode 16（详见限制文档），断行／词句／字素规范为 Unicode 17。核心无文件、网络、时钟访问。
+字素切分依赖 `kawaz/grapheme@0.10.4`；显示宽度依赖`moonbit-community/unicodewidth@0.2.1`。宽度按字素的等宽显示列相加，不是字体整形后的像素宽度。宽度依赖内部数据版本为 Unicode 16（详见限制文档），断行／词句／字素规范为 Unicode 17。核心无文件、网络、时钟访问。
 
 ## 示例
 
