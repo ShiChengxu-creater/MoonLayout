@@ -1,5 +1,5 @@
 import {
-  "hbYlj/moonlayout" @ml,
+  "ShiChengxu/moonlayout" @ml,
 }
 
 pkgtype(kind: "executable")

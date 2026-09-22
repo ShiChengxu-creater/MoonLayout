@@ -1,11 +1,11 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "hbYlj/moonlayout"
+package "ShiChengxu/moonlayout"
 
 import {
-  "hbYlj/moonlayout/align",
-  "hbYlj/moonlayout/layout",
-  "hbYlj/moonlayout/segment",
-  "hbYlj/moonlayout/wrap",
+  "ShiChengxu/moonlayout/align",
+  "ShiChengxu/moonlayout/layout",
+  "ShiChengxu/moonlayout/segment",
+  "ShiChengxu/moonlayout/wrap",
 }
 
 // Values

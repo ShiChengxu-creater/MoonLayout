@@ -1,12 +1,12 @@
 # MoonLayout
 
 纯 MoonBit 的 Unicode 17.0.0 段落布局库，支持 native、wasm-gc、JavaScript。
-包名 `hbYlj/moonlayout`，初验版本 `0.1.0`。当前发布状态见
+包名 `ShiChengxu/moonlayout`，初验版本 `0.1.0`。当前发布状态见
 [初验清单](docs/INITIAL_ACCEPTANCE.md)。
 
 ## 最小示例
 
-消费包在 `moon.pkg` 中导入 `"hbYlj/moonlayout" @ml`，然后调用
+消费包在 `moon.pkg` 中导入 `"ShiChengxu/moonlayout" @ml`，然后调用
 `@ml.layout(text, @ml.LayoutStyle::new(width, alignment=Center))`。
 下面的根包文档测试由 `moon test` 实际编译执行：
 
@@ -22,7 +22,7 @@ test "README minimum layout" {
 }
 ```
 
-发布后可执行 `moon add hbYlj/moonlayout@0.1.0`；发布前使用本地 workspace
+发布后可执行 `moon add ShiChengxu/moonlayout@0.1.0`；发布前使用本地 workspace
 消费方式，见 [TESTING](docs/TESTING.md)。
 
 ## 能力与约定

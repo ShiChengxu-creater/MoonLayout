@@ -1,8 +1,8 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "hbYlj/moonlayout/align"
+package "ShiChengxu/moonlayout/align"
 
 import {
-  "hbYlj/moonlayout/wrap",
+  "ShiChengxu/moonlayout/wrap",
   "moonbitlang/core/debug",
 }
 
