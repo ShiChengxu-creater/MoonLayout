@@ -9,7 +9,7 @@
 //   "moonbitlang/x@0.4.6",
 // }
 
-name = "hbYlj/moonlayout"
+name = "ShiChengxu/moonlayout"
 
 version = "0.1.0"
 

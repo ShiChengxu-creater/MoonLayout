@@ -23,7 +23,8 @@ separately; a local package cannot prove a registry installation.
 
 Local functional/technical acceptance passes. Full initial release acceptance
 is **not yet complete**: no public remote is configured, no push occurred, and
-mooncakes publication/registry installation is pending namespace resolution.
+mooncakes publication and a clean registry installation remain pending. The user
+approved the package namespace `ShiChengxu/moonlayout`.
 
 | Evidence | Result |
 | --- | --- |
@@ -75,9 +76,9 @@ count as a hard gate, this discrepancy remains a separate acceptance issue.
 - Local author email: 236543694+ShiChengxu-creater@users.noreply.github.com.
 - No Git remote configured. The lookup of ShiChengxu-creater/MoonLayout returned
   not found; this does not assert that no differently named repository exists.
-- mooncakes `moon whoami` reports ShiChengxu, but goal.md and moon.mod currently
-  use hbYlj/moonlayout. A namespace clarification was requested; no authority for
-  hbYlj and no successful registry publication are assumed.
+- The user approved `ShiChengxu/moonlayout`, matching the installed mooncakes
+  session (`moon whoami`: ShiChengxu). Module metadata, imports and documentation
+  use this namespace. No successful registry publication is claimed.
 - Width data supplied by unicodewidth 0.2.1 is Unicode 16.0.0; break/segment and
   grapheme data are Unicode 17.0.0. See LIMITATIONS.md.
 

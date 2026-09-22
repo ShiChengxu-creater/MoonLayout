@@ -5,8 +5,8 @@ requires Git identity ShiChengxu-creater. Verify with gitauth status (GitHub CLI
 must be on PATH) and git var GIT_AUTHOR_IDENT. No global identity change is needed.
 
 1. Run python scripts/verify.py and review INITIAL_ACCEPTANCE.md plus interfaces.
-2. Resolve the namespace: goal.md says hbYlj/moonlayout; the installed mooncakes
-   session currently reports ShiChengxu. Do not claim permission for hbYlj.
+2. Verify the approved package namespace `ShiChengxu/moonlayout` and confirm
+   that `moon whoami` still reports ShiChengxu before publishing.
 3. Configure the correct public GitHub repository and moon.mod repository URL.
 4. After the local acceptance is complete and publication is authorized, push
    the local history, run remote CI and inspect its result.

@@ -17,8 +17,8 @@ Native has 3 additional generator tests because the tool is native-only.
 
 For external consumption, create a separate `moon.work` with two members:
 this repository and a new consumer module whose moon.mod imports
-`hbYlj/moonlayout@0.1.0`. The consumer moon.pkg imports
-`"hbYlj/moonlayout" @ml`. Use `@ml.LayoutStyle::new(12, alignment=Center)` and
+`ShiChengxu/moonlayout@0.1.0`. The consumer moon.pkg imports
+`"ShiChengxu/moonlayout" @ml`. Use `@ml.LayoutStyle::new(12, alignment=Center)` and
 `@ml.layout(...)`; enum arguments are inferred from their expected type.
 The verification script builds a fresh consumer against the packaged artifact,
 not just the development checkout, on all three backends.

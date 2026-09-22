@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "hbYlj/moonlayout/internal/text"
+package "ShiChengxu/moonlayout/internal/text"
 
 // Values
 pub fn byte_length(String) -> Int

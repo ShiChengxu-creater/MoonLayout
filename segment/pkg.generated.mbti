@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "hbYlj/moonlayout/segment"
+package "ShiChengxu/moonlayout/segment"
 
 import {
   "moonbitlang/core/debug",

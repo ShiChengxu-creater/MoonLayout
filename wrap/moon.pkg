@@ -1,8 +1,8 @@
 import {
-  "hbYlj/moonlayout/linebreak",
-  "hbYlj/moonlayout/segment",
-  "hbYlj/moonlayout/break_data" @data,
-  "hbYlj/moonlayout/internal/text",
+  "ShiChengxu/moonlayout/linebreak",
+  "ShiChengxu/moonlayout/segment",
+  "ShiChengxu/moonlayout/break_data" @data,
+  "ShiChengxu/moonlayout/internal/text",
   "kawaz/grapheme",
   "moonbit-community/unicodewidth" @width,
 }

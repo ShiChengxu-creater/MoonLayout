@@ -3,7 +3,7 @@
 ## 一、项目基本信息
 
 **项目名称：** MoonLayout
-**包命名空间：** `hbYlj/moonlayout`
+**包命名空间：** `ShiChengxu/moonlayout`
 **项目类型：** 原创 MoonBit 开源库；复用生态已有 Unicode 原语，补齐缺失的断行/布局层
 **许可证：** Apache-2.0（Unicode 数据表遵循 Unicode License v3，记入 THIRD_PARTY.md）
 **Unicode 版本：** 17.0.0（与依赖 `kawaz/grapheme` 对齐）
