@@ -1,23 +1,31 @@
-name: CI
+name: Initial acceptance
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
-  test:
+  acceptance:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        target: [native, wasm-gc, js]
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - uses: moonbitlang/moonbit-toolchain@v1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install official MoonBit toolchain
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - run: moon version --all
-      - run: moon fmt --check
-      - run: moon check --target ${{ matrix.target }} --deny-warn
-      - run: moon test --target ${{ matrix.target }} --deny-warn
-      - run: moon info
-      - run: git diff --exit-code -- '*.mbti'
+      - name: Unicode data, three backends, examples and packaged consumer
+        run: python scripts/verify.py
+      - name: Generated files must stay synchronized
+        run: git diff --exit-code -- '*.mbt' '*.mbti' 'moon.mod' 'moon.pkg'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acceptance-logs
+          path: |
+            .agent-workplace/verification/*.log
+            .agent-workplace/verification/summary.json
