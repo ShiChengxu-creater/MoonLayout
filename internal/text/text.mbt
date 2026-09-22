@@ -22,7 +22,7 @@ pub fn scan(s : String) -> Text {
     bytes.push(b)
     units.push(u)
   }
-  { chars, bytes, units }
+  { chars, bytes, units, }
 }
 
 ///|

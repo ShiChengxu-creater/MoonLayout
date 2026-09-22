@@ -43,7 +43,7 @@ fn parse_ucd(text : String, only? : String = "") -> Array[Range] raise {
       raise InvalidData("invalid scalar range: \{body}")
     }
     if only == "" || only == property {
-      rows.push({ lo, hi, property })
+      rows.push({ lo, hi, property, })
     }
   }
   rows.sort_by(fn(a, b) { a.lo.compare(b.lo) })

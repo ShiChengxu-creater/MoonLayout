@@ -68,14 +68,14 @@ fn tokens(text : @text.Text) -> Array[Token] {
         let last = result[result.length() - 1]
         if !hard(last.cls) && last.cls != SP && last.cls != ZW {
           // LB9: remove attached marks for all subsequent context rules.
-          result[result.length() - 1] = { ..last, zwj: cls == ZWJ }
+          result[result.length() - 1] = { ..last, zwj: cls == ZWJ, }
           continue
         }
       }
       // LB10 substitutes all properties of U+0041, not just its class.
-      result.push({ cls: AL, cp: 0x41, start: i, zwj: cls == ZWJ })
+      result.push({ cls: AL, cp: 0x41, start: i, zwj: cls == ZWJ, })
     } else {
-      result.push({ cls, cp, start: i, zwj: false })
+      result.push({ cls, cp, start: i, zwj: false, })
     }
   }
   result
