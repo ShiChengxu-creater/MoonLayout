@@ -18,6 +18,8 @@ jobs:
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - run: moon version --all
+      - name: Update MoonBit registry
+        run: moon update
       - name: Unicode data, three backends, examples and packaged consumer
         run: python scripts/verify.py
       - name: Generated files must stay synchronized
