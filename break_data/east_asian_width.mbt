@@ -12,6 +12,12 @@ pub(all) enum EastAsianWidth {
 } derive(Eq, Debug)
 
 ///|
+pub extend EastAsianWidth with Eq::{not_equal, equal}
+
+///|
+pub extend EastAsianWidth with Debug::{to_repr}
+
+///|
 let east_asian_width_ranges : ReadOnlyArray[(Int, Int, EastAsianWidth)] = [
   (32, 126, Na),
   (161, 161, A),

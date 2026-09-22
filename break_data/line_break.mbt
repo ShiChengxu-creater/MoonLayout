@@ -55,6 +55,12 @@ pub(all) enum LineBreak {
 } derive(Eq, Debug)
 
 ///|
+pub extend LineBreak with Eq::{not_equal, equal}
+
+///|
+pub extend LineBreak with Debug::{to_repr}
+
+///|
 let line_break_ranges : ReadOnlyArray[(Int, Int, LineBreak)] = [
   (0, 8, CM),
   (9, 9, BA),

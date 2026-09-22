@@ -118,6 +118,12 @@ pub(all) enum SegmentKind {
 } derive(Eq, Debug)
 
 ///|
+pub extend SegmentKind with Eq::{not_equal, equal}
+
+///|
+pub extend SegmentKind with Debug::{to_repr}
+
+///|
 /// All half-open UTF-8 byte ranges, including whitespace/punctuation segments.
 pub fn segments(s : String, kind : SegmentKind) -> Array[(Int, Int)] {
   let boundaries = match kind {

@@ -23,6 +23,9 @@ pub(all) enum SegmentKind {
   Word
   Sentence
 } derive(Eq, @debug.Debug)
+pub fn SegmentKind::equal(Self, Self) -> Bool
+pub fn SegmentKind::not_equal(Self, Self) -> Bool
+pub fn SegmentKind::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 

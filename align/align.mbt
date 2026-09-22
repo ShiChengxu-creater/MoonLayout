@@ -8,6 +8,12 @@ pub(all) enum Alignment {
 } derive(Eq, Debug)
 
 ///|
+pub extend Alignment with Eq::{not_equal, equal}
+
+///|
+pub extend Alignment with Debug::{to_repr}
+
+///|
 fn cjk(s : String) -> Bool {
   match s.iter().next() {
     None => false

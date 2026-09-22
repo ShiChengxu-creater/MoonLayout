@@ -22,6 +22,12 @@ pub(all) struct LayoutStyle {
 } derive(Eq, Debug)
 
 ///|
+pub extend LayoutStyle with Eq::{not_equal, equal}
+
+///|
+pub extend LayoutStyle with Debug::{to_repr}
+
+///|
 /// Construct a greedy style. Nonpositive widths normalize to one column.
 pub fn LayoutStyle::new(
   max_width : Int,

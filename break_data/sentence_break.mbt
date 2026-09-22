@@ -21,6 +21,12 @@ pub(all) enum SentenceBreak {
 } derive(Eq, Debug)
 
 ///|
+pub extend SentenceBreak with Eq::{not_equal, equal}
+
+///|
+pub extend SentenceBreak with Debug::{to_repr}
+
+///|
 let sentence_break_ranges : ReadOnlyArray[(Int, Int, SentenceBreak)] = [
   (9, 9, Sp),
   (10, 10, LF),

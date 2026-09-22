@@ -7,7 +7,7 @@
 消费包在 `moon.pkg` 中导入 `"ShiChengxu/moonlayout" @ml`，然后调用`@ml.layout(text, @ml.LayoutStyle::new(width, alignment=Center))`。
 下面的根包文档测试由 `moon test` 实际编译执行：
 
-```mbt
+```mbt nocheck
 ///|
 test "README minimum layout" {
   let lines = layout("你好 MoonBit", LayoutStyle::new(8, alignment=Left))

@@ -29,11 +29,17 @@ pub(all) enum EastAsianWidth {
   W
   Na
 } derive(Eq, @debug.Debug)
+pub fn EastAsianWidth::equal(Self, Self) -> Bool
+pub fn EastAsianWidth::not_equal(Self, Self) -> Bool
+pub fn EastAsianWidth::to_repr(Self) -> @debug.Repr
 
 pub(all) enum EmojiProperty {
   Other
   Extended_Pictographic
 } derive(Eq, @debug.Debug)
+pub fn EmojiProperty::equal(Self, Self) -> Bool
+pub fn EmojiProperty::not_equal(Self, Self) -> Bool
+pub fn EmojiProperty::to_repr(Self) -> @debug.Repr
 
 pub(all) enum GeneralCategory {
   Cc
@@ -67,6 +73,9 @@ pub(all) enum GeneralCategory {
   Zp
   Zs
 } derive(Eq, @debug.Debug)
+pub fn GeneralCategory::equal(Self, Self) -> Bool
+pub fn GeneralCategory::not_equal(Self, Self) -> Bool
+pub fn GeneralCategory::to_repr(Self) -> @debug.Repr
 
 pub(all) enum LineBreak {
   AI
@@ -119,6 +128,9 @@ pub(all) enum LineBreak {
   ZW
   ZWJ
 } derive(Eq, @debug.Debug)
+pub fn LineBreak::equal(Self, Self) -> Bool
+pub fn LineBreak::not_equal(Self, Self) -> Bool
+pub fn LineBreak::to_repr(Self) -> @debug.Repr
 
 pub(all) enum SentenceBreak {
   CR
@@ -137,6 +149,9 @@ pub(all) enum SentenceBreak {
   OLetter
   SContinue
 } derive(Eq, @debug.Debug)
+pub fn SentenceBreak::equal(Self, Self) -> Bool
+pub fn SentenceBreak::not_equal(Self, Self) -> Bool
+pub fn SentenceBreak::to_repr(Self) -> @debug.Repr
 
 pub(all) enum WordBreak {
   CR
@@ -159,6 +174,9 @@ pub(all) enum WordBreak {
   Hebrew_Letter
   Regional_Indicator
 } derive(Eq, @debug.Debug)
+pub fn WordBreak::equal(Self, Self) -> Bool
+pub fn WordBreak::not_equal(Self, Self) -> Bool
+pub fn WordBreak::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 

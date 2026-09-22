@@ -18,6 +18,9 @@ pub(all) enum Alignment {
   Center
   Justify
 } derive(Eq, @debug.Debug)
+pub fn Alignment::equal(Self, Self) -> Bool
+pub fn Alignment::not_equal(Self, Self) -> Bool
+pub fn Alignment::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 

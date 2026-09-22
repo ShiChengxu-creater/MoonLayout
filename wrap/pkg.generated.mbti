@@ -19,6 +19,9 @@ pub(all) enum BreakKind {
   Forced
   End
 } derive(Eq, @debug.Debug)
+pub fn BreakKind::equal(Self, Self) -> Bool
+pub fn BreakKind::not_equal(Self, Self) -> Bool
+pub fn BreakKind::to_repr(Self) -> @debug.Repr
 
 pub(all) enum BreakPolicy {
   Unicode
@@ -26,6 +29,9 @@ pub(all) enum BreakPolicy {
   Sentence
   Grapheme
 } derive(Eq, @debug.Debug)
+pub fn BreakPolicy::equal(Self, Self) -> Bool
+pub fn BreakPolicy::not_equal(Self, Self) -> Bool
+pub fn BreakPolicy::to_repr(Self) -> @debug.Repr
 
 pub(all) struct Line {
   start : Int
@@ -37,17 +43,26 @@ pub(all) struct Line {
   aligned_text : String
   ambiguous_wide : Bool
 } derive(Eq, @debug.Debug)
+pub fn Line::equal(Self, Self) -> Bool
+pub fn Line::not_equal(Self, Self) -> Bool
+pub fn Line::to_repr(Self) -> @debug.Repr
 
 pub(all) enum WrapAlgorithm {
   Greedy
 } derive(Eq, @debug.Debug)
+pub fn WrapAlgorithm::equal(Self, Self) -> Bool
+pub fn WrapAlgorithm::not_equal(Self, Self) -> Bool
+pub fn WrapAlgorithm::to_repr(Self) -> @debug.Repr
 
 pub(all) struct WrapOptions {
   ambiguous_wide : Bool
   break_policy : BreakPolicy
   tab_width : Int
 } derive(Eq, @debug.Debug)
+pub fn WrapOptions::equal(Self, Self) -> Bool
 pub fn WrapOptions::new(ambiguous_wide? : Bool, break_policy? : BreakPolicy, tab_width? : Int) -> Self
+pub fn WrapOptions::not_equal(Self, Self) -> Bool
+pub fn WrapOptions::to_repr(Self) -> @debug.Repr
 
 // Type aliases
 

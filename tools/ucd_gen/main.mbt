@@ -98,6 +98,10 @@ fn emit(
   }
   out.write_string("} derive(Eq, Debug)\n\n///|\n")
   out.write_string(
+    "pub extend \{type_name} with Eq::{not_equal, equal}\n\n///|\n",
+  )
+  out.write_string("pub extend \{type_name} with Debug::{to_repr}\n\n///|\n")
+  out.write_string(
     "let \{function}_ranges : ReadOnlyArray[(Int, Int, \{type_name})] = [\n",
   )
   for row in rows {

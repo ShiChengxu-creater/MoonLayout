@@ -36,6 +36,12 @@ pub(all) enum GeneralCategory {
 } derive(Eq, Debug)
 
 ///|
+pub extend GeneralCategory with Eq::{not_equal, equal}
+
+///|
+pub extend GeneralCategory with Debug::{to_repr}
+
+///|
 let general_category_ranges : ReadOnlyArray[(Int, Int, GeneralCategory)] = [
   (0, 31, Cc),
   (32, 32, Zs),

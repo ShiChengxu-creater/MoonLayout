@@ -8,6 +8,12 @@ pub(all) enum EmojiProperty {
 } derive(Eq, Debug)
 
 ///|
+pub extend EmojiProperty with Eq::{not_equal, equal}
+
+///|
+pub extend EmojiProperty with Debug::{to_repr}
+
+///|
 let emoji_property_ranges : ReadOnlyArray[(Int, Int, EmojiProperty)] = [
   (169, 169, Extended_Pictographic),
   (174, 174, Extended_Pictographic),

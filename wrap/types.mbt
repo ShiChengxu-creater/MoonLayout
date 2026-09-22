@@ -8,6 +8,12 @@ pub(all) enum BreakKind {
 } derive(Eq, Debug)
 
 ///|
+pub extend BreakKind with Eq::{not_equal, equal}
+
+///|
+pub extend BreakKind with Debug::{to_repr}
+
+///|
 /// Preferred boundaries. Word/Sentence intersect UAX #14; Grapheme allows every
 /// grapheme boundary. Emergency splitting still applies when a unit is too long.
 pub(all) enum BreakPolicy {
@@ -18,10 +24,22 @@ pub(all) enum BreakPolicy {
 } derive(Eq, Debug)
 
 ///|
+pub extend BreakPolicy with Eq::{not_equal, equal}
+
+///|
+pub extend BreakPolicy with Debug::{to_repr}
+
+///|
 /// Initial acceptance supports greedy wrapping only.
 pub(all) enum WrapAlgorithm {
   Greedy
 } derive(Eq, Debug)
+
+///|
+pub extend WrapAlgorithm with Eq::{not_equal, equal}
+
+///|
+pub extend WrapAlgorithm with Debug::{to_repr}
 
 ///|
 pub(all) struct WrapOptions {
@@ -29,6 +47,12 @@ pub(all) struct WrapOptions {
   break_policy : BreakPolicy
   tab_width : Int
 } derive(Eq, Debug)
+
+///|
+pub extend WrapOptions with Eq::{not_equal, equal}
+
+///|
+pub extend WrapOptions with Debug::{to_repr}
 
 ///|
 /// Nonpositive tab widths normalize to one column.
@@ -62,3 +86,9 @@ pub(all) struct Line {
   aligned_text : String
   ambiguous_wide : Bool
 } derive(Eq, Debug)
+
+///|
+pub extend Line with Eq::{not_equal, equal}
+
+///|
+pub extend Line with Debug::{to_repr}
