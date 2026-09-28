@@ -1,0 +1,6 @@
+import {
+  "ShiChengxu/moonlayout" @ml,
+  "moonbit-community/normalization",
+}
+
+pkgtype(kind: "executable")
