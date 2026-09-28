@@ -1,0 +1,6 @@
+import {
+  "ShiChengxu/moonlayout" @ml,
+  "ShiChengxu/moonlayout/integration",
+}
+
+pkgtype(kind: "executable")
