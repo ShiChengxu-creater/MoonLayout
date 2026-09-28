@@ -42,3 +42,18 @@ test "edge/provider points filtered to interior grapheme bytes" {
     )
   }
 }
+
+///|
+test "regr/hyphen offsets include preceding spaces and punctuation" {
+  let h = @hyphen.Liang::english()
+  for algorithm in [@wrap.Greedy, @wrap.Optimal] {
+    let lines = @wrap.wrap_hyphenated("  hyphenation", 9, h, algorithm~)
+    assert_eq(lines[0].text, "  hyphen-")
+    assert_eq(lines[0].end, 8)
+    for line in @wrap.wrap_hyphenated("x, hyphenation", 7, h, algorithm~) {
+      if line.break_kind == @wrap.Hyphenated {
+        assert_true(line.end == 5 || line.end == 9)
+      }
+    }
+  }
+}
