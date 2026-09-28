@@ -7,11 +7,11 @@ pub using @wrap {
   type BreakKind,
   type WrapAlgorithm,
   type BreakPolicy,
+  type OptimalOptions,
 }
 
 ///|
-/// Complete initial-release layout configuration. Hyphenation and optimal
-/// wrapping are intentionally deferred to the later release in goal.md.
+/// Logical paragraph layout configuration. Optional integrations live in their own package.
 pub(all) struct LayoutStyle {
   max_width : Int
   alignment : Alignment
@@ -19,6 +19,7 @@ pub(all) struct LayoutStyle {
   wrap_algorithm : WrapAlgorithm
   break_policy : BreakPolicy
   tab_width : Int
+  optimal : OptimalOptions
 } derive(Eq, Debug)
 
 ///|
@@ -28,7 +29,7 @@ pub extend LayoutStyle with Eq::{not_equal, equal}
 pub extend LayoutStyle with Debug::{to_repr}
 
 ///|
-/// Construct a greedy style. Nonpositive widths normalize to one column.
+/// Construct a layout style (greedy by default). Nonpositive widths normalize to one column.
 pub fn LayoutStyle::new(
   max_width : Int,
   alignment? : Alignment = Left,
@@ -36,6 +37,7 @@ pub fn LayoutStyle::new(
   wrap_algorithm? : WrapAlgorithm = Greedy,
   break_policy? : BreakPolicy = Unicode,
   tab_width? : Int = 4,
+  optimal? : OptimalOptions = OptimalOptions::new(),
 ) -> LayoutStyle {
   {
     max_width,
@@ -44,6 +46,7 @@ pub fn LayoutStyle::new(
     wrap_algorithm,
     break_policy,
     tab_width,
+    optimal,
   }
 }
 
@@ -57,6 +60,8 @@ pub fn layout(text : String, style : LayoutStyle) -> Array[Line] {
   )
   let lines = match style.wrap_algorithm {
     Greedy => @wrap.wrap(text, style.max_width, opts~)
+    Optimal =>
+      @wrap.optimal_wrap(text, style.max_width, opts~, optimal=style.optimal)
   }
   let width = if style.max_width > 0 { style.max_width } else { 1 }
   let aligned = @align.align_lines(lines, width, style.alignment)

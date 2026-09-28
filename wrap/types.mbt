@@ -30,9 +30,10 @@ pub extend BreakPolicy with Eq::{not_equal, equal}
 pub extend BreakPolicy with Debug::{to_repr}
 
 ///|
-/// Initial acceptance supports greedy wrapping only.
+/// Greedy fills each line; Optimal minimizes paragraph badness.
 pub(all) enum WrapAlgorithm {
   Greedy
+  Optimal
 } derive(Eq, Debug)
 
 ///|

@@ -14,3 +14,11 @@ test "edge/layout empty and oversized grapheme" {
   assert_eq(line.width, 2)
   assert_eq(line.source, "👩‍🔬")
 }
+
+///|
+test "valid/optimal layout facade" {
+  let style = @layout.LayoutStyle::new(6, wrap_algorithm=Optimal)
+  assert_eq(@layout.layout("aaa bb bb ccccc", style).map(fn(l) { l.text }), [
+    "aaa", "bb bb", "ccccc",
+  ])
+}

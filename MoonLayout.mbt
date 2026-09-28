@@ -10,9 +10,11 @@ pub using @wrap {
   type Line,
   type BreakKind,
   type WrapOptions,
+  type OptimalOptions,
   type WrapAlgorithm,
   type BreakPolicy,
   wrap,
+  optimal_wrap,
   display_width,
 }
 
