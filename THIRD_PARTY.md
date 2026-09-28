@@ -23,3 +23,10 @@ are permitted in any medium without royalty provided the copyright
 notice and this notice are preserved.
 
 The vendored source retains the full upstream notices, including its Plain TeX provenance. Regenerate with `python scripts/generate_hyphen.py`.
+
+## Optional integration dependencies
+
+- `moonbit-community/bidi@0.5.0`: Apache-2.0, UAX #9 / Unicode 16.0.0.
+- `moonbit-community/normalization@0.5.0` and its `moonbit-community/ucd@0.5.0`: Apache-2.0, Unicode 16.0.0 normalization tables.
+- Source: https://github.com/moonbit-community/tonyfettes-unicode . These dependencies are used only by the `integration` package; the core layout package does not import them. Module resolution downloads them because MoonBit declares dependencies at module scope.
+- No Unicode 17 conformance claim is made for these upstream Unicode 16 primitives. MoonLayout's own UAX #14/#29 data remains Unicode 17.0.0.
