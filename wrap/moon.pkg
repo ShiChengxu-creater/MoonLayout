@@ -1,4 +1,5 @@
 import {
+  "ShiChengxu/moonlayout/hyphen",
   "ShiChengxu/moonlayout/linebreak",
   "ShiChengxu/moonlayout/segment",
   "ShiChengxu/moonlayout/break_data" @data,

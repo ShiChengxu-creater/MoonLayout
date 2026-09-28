@@ -2,6 +2,7 @@
 /// Reason a line ended. Forced is an emergency grapheme boundary; End is EOF.
 pub(all) enum BreakKind {
   Soft
+  Hyphenated
   Hard
   Forced
   End

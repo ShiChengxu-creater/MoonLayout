@@ -2,6 +2,7 @@
 package "ShiChengxu/moonlayout/wrap"
 
 import {
+  "ShiChengxu/moonlayout/hyphen",
   "moonbitlang/core/debug",
 }
 
@@ -12,11 +13,14 @@ pub fn optimal_wrap(String, Int, opts? : WrapOptions, optimal? : OptimalOptions)
 
 pub fn wrap(String, Int, opts? : WrapOptions) -> Array[Line]
 
+pub fn[H : @hyphen.Hyphenator] wrap_hyphenated(String, Int, H, algorithm? : WrapAlgorithm, opts? : WrapOptions, optimal? : OptimalOptions) -> Array[Line]
+
 // Errors
 
 // Types and methods
 pub(all) enum BreakKind {
   Soft
+  Hyphenated
   Hard
   Forced
   End

@@ -88,6 +88,17 @@ pub fn optimal_wrap(
   opts? : WrapOptions = WrapOptions::new(),
   optimal? : OptimalOptions = OptimalOptions::new(),
 ) -> Array[Line] {
+  optimal_points(s, max_width, opts, optimal, Map([]))
+}
+
+///|
+fn optimal_points(
+  s : String,
+  max_width : Int,
+  opts : WrapOptions,
+  optimal : OptimalOptions,
+  points : Map[Int, Bool],
+) -> Array[Line] {
   if s.is_empty() {
     return []
   }
@@ -116,6 +127,8 @@ pub fn optimal_wrap(
     }
   }
   let cost = Array::make(n + 1, 1.0e100)
+  let emergencies = Array::make(n + 1, 0x3FFFFFFF)
+  emergencies[n] = 0
   let next = Array::make(n, n)
   let kinds = Array::make(n, End)
   cost[n] = 0.0
@@ -148,13 +161,16 @@ pub fn optimal_wrap(
         End
       } else if allowed[end] {
         Soft
+      } else if points.contains(bytes[end]) && visible + 1 - shrink <= limit {
+        Hyphenated
       } else {
         Forced
       }
       // Do not manufacture a line of just the whitespace following a word.
       let whitespace_split = end < n && trailing_space(gs[end])
       if !whitespace_split || hard || end == n {
-        let delta = limit.to_double() - visible.to_double()
+        let shown = visible + (if kind == Hyphenated { 1 } else { 0 })
+        let delta = limit.to_double() - shown.to_double()
         let stretch = visible_spaces * bounded(optimal.stretch, 1024)
         let capacity = if delta < 0.0 { shrink } else { stretch }
         let badness = if (hard || end == n) && delta >= 0.0 {
@@ -165,12 +181,19 @@ pub fn optimal_wrap(
         } else {
           delta * delta
         }
-        let emergency = if kind == Forced { 1.0e20 } else { 0.0 }
+        let emergency = emergencies[end] + (if kind == Forced { 1 } else { 0 })
+        let hyphen_cost = if kind == Hyphenated {
+          bounded(optimal.hyphen_penalty, 1000000).to_double()
+        } else {
+          0.0
+        }
         let score = cost[end] +
           badness +
-          emergency +
+          hyphen_cost +
           bounded(optimal.line_penalty, 1000000).to_double()
-        if score <= cost[start] {
+        if emergency < emergencies[start] ||
+          (emergency == emergencies[start] && score <= cost[start]) {
+          emergencies[start] = emergency
           cost[start] = score
           next[start] = end
           kinds[start] = kind
@@ -184,7 +207,8 @@ pub fn optimal_wrap(
     if cost[start] == 1.0e100 {
       next[start] = start + 1
       kinds[start] = if start + 1 == n { End } else { Forced }
-      cost[start] = cost[start + 1] + 1.0e20
+      cost[start] = cost[start + 1]
+      emergencies[start] = emergencies[start + 1] + 1
     }
   }
   let result = []

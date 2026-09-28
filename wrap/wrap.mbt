@@ -78,6 +78,10 @@ fn make_line(
     }
     width += w
   }
+  if kind == Hyphenated {
+    builder.write_string("-")
+    width += 1
+  }
   let text = builder.to_string()
   {
     start: bytes[start],
@@ -100,6 +104,16 @@ pub fn wrap(
   s : String,
   max_width : Int,
   opts? : WrapOptions = WrapOptions::new(),
+) -> Array[Line] {
+  greedy_points(s, max_width, opts, Map([]))
+}
+
+///|
+fn greedy_points(
+  s : String,
+  max_width : Int,
+  opts : WrapOptions,
+  points : Map[Int, Bool],
 ) -> Array[Line] {
   if s.is_empty() {
     return []
@@ -142,6 +156,7 @@ pub fn wrap(
     let mut width = 0
     let mut visible_width = 0
     let mut last_break = start
+    let mut last_kind = Soft
     let mut emitted = false
     while i < gs.length() {
       if hard_cluster(gs[i]) {
@@ -158,7 +173,7 @@ pub fn wrap(
       }
       if candidate > limit && i > start {
         let end = if last_break > start { last_break } else { i }
-        let kind = if last_break > start { Soft } else { Forced }
+        let kind = if last_break > start { last_kind } else { Forced }
         lines.push(make_line(s, gs, bytes, units, start, end, kind, opts))
         start = end
         emitted = true
@@ -169,6 +184,10 @@ pub fn wrap(
       i += 1
       if allowed[i] {
         last_break = i
+        last_kind = Soft
+      } else if points.contains(bytes[i]) && visible_width + 1 <= limit {
+        last_break = i
+        last_kind = Hyphenated
       }
     }
     if !emitted {
