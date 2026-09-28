@@ -1,0 +1,13 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "ShiChengxu/moonlayout/tools/differential"
+
+// Values
+
+// Errors
+
+// Types and methods
+type Case derive(ToJson)
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,365 @@
+{
+  "status": "pass",
+  "cases": 15,
+  "python": "3.13.5",
+  "python_unicode": "15.1.0",
+  "icu": "68.2.0.10",
+  "icu_locale": "root",
+  "results": [
+    {
+      "text": "hello world again",
+      "width": 5,
+      "greedy": [
+        "hello",
+        "world",
+        "again"
+      ],
+      "breaks": [
+        6,
+        12,
+        17
+      ],
+      "nfc": "hello world again",
+      "nfkc": "hello world again",
+      "python_wrap": [
+        "hello",
+        "world",
+        "again"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        6,
+        12,
+        17
+      ]
+    },
+    {
+      "text": "aaa bb bb ccccc",
+      "width": 5,
+      "greedy": [
+        "aaa",
+        "bb bb",
+        "ccccc"
+      ],
+      "breaks": [
+        4,
+        7,
+        10,
+        15
+      ],
+      "nfc": "aaa bb bb ccccc",
+      "nfkc": "aaa bb bb ccccc",
+      "python_wrap": [
+        "aaa",
+        "bb bb",
+        "ccccc"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        4,
+        7,
+        10,
+        15
+      ]
+    },
+    {
+      "text": "abcdefghi",
+      "width": 5,
+      "greedy": [
+        "abcde",
+        "fghi"
+      ],
+      "breaks": [
+        9
+      ],
+      "nfc": "abcdefghi",
+      "nfkc": "abcdefghi",
+      "python_wrap": [
+        "abcde",
+        "fghi"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        9
+      ]
+    },
+    {
+      "text": "one two three four",
+      "width": 5,
+      "greedy": [
+        "one",
+        "two",
+        "three",
+        "four"
+      ],
+      "breaks": [
+        4,
+        8,
+        14,
+        18
+      ],
+      "nfc": "one two three four",
+      "nfkc": "one two three four",
+      "python_wrap": [
+        "one",
+        "two",
+        "three",
+        "four"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        4,
+        8,
+        14,
+        18
+      ]
+    },
+    {
+      "text": "你好世界",
+      "width": 5,
+      "greedy": [
+        "你好",
+        "世界"
+      ],
+      "breaks": [
+        3,
+        6,
+        9,
+        12
+      ],
+      "nfc": "你好世界",
+      "nfkc": "你好世界",
+      "python_wrap": [
+        "你好世界"
+      ],
+      "wrap_comparison": "display-cell/grapheme/UAX14 layout versus Python code-point wrapping",
+      "icu_breaks": [
+        3,
+        6,
+        9,
+        12
+      ]
+    },
+    {
+      "text": "áb",
+      "width": 5,
+      "greedy": [
+        "áb"
+      ],
+      "breaks": [
+        4
+      ],
+      "nfc": "áb",
+      "nfkc": "áb",
+      "python_wrap": [
+        "áb"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        4
+      ]
+    },
+    {
+      "text": "é Ａ ﬁ",
+      "width": 5,
+      "greedy": [
+        "é Ａ",
+        "ﬁ"
+      ],
+      "breaks": [
+        4,
+        8,
+        11
+      ],
+      "nfc": "é Ａ ﬁ",
+      "nfkc": "é A fi",
+      "python_wrap": [
+        "é Ａ",
+        "ﬁ"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        4,
+        8,
+        11
+      ]
+    },
+    {
+      "text": "a\r\nb",
+      "width": 5,
+      "greedy": [
+        "a",
+        "b"
+      ],
+      "breaks": [
+        3,
+        4
+      ],
+      "nfc": "a\r\nb",
+      "nfkc": "a\r\nb",
+      "python_wrap": [
+        "a  b"
+      ],
+      "wrap_comparison": "hard breaks preserved by MoonLayout; Python whitespace replacement",
+      "icu_breaks": [
+        3,
+        4
+      ]
+    },
+    {
+      "text": "a  b c",
+      "width": 5,
+      "greedy": [
+        "a  b",
+        "c"
+      ],
+      "breaks": [
+        3,
+        5,
+        6
+      ],
+      "nfc": "a  b c",
+      "nfkc": "a  b c",
+      "python_wrap": [
+        "a  b",
+        "c"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        3,
+        5,
+        6
+      ]
+    },
+    {
+      "text": "a\tb",
+      "width": 5,
+      "greedy": [
+        "a   b"
+      ],
+      "breaks": [
+        2,
+        3
+      ],
+      "nfc": "a\tb",
+      "nfkc": "a\tb",
+      "python_wrap": [
+        "a",
+        "b"
+      ],
+      "wrap_comparison": "tab stops: MoonLayout 4, Python 8",
+      "icu_breaks": [
+        2,
+        3
+      ]
+    },
+    {
+      "text": "👩‍🔬 🇨🇳",
+      "width": 5,
+      "greedy": [
+        "👩‍🔬 🇨🇳"
+      ],
+      "breaks": [
+        12,
+        20
+      ],
+      "nfc": "👩‍🔬 🇨🇳",
+      "nfkc": "👩‍🔬 🇨🇳",
+      "python_wrap": [
+        "👩‍🔬",
+        "🇨🇳"
+      ],
+      "wrap_comparison": "display-cell/grapheme/UAX14 layout versus Python code-point wrapping",
+      "icu_breaks": [
+        12,
+        20
+      ]
+    },
+    {
+      "text": "(abc) 123",
+      "width": 5,
+      "greedy": [
+        "(abc)",
+        "123"
+      ],
+      "breaks": [
+        6,
+        9
+      ],
+      "nfc": "(abc) 123",
+      "nfkc": "(abc) 123",
+      "python_wrap": [
+        "(abc)",
+        "123"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        6,
+        9
+      ]
+    },
+    {
+      "text": "a b",
+      "width": 5,
+      "greedy": [
+        "a b"
+      ],
+      "breaks": [
+        4
+      ],
+      "nfc": "a b",
+      "nfkc": "a b",
+      "python_wrap": [
+        "a b"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        4
+      ]
+    },
+    {
+      "text": "שלום 123",
+      "width": 5,
+      "greedy": [
+        "שלום",
+        "123"
+      ],
+      "breaks": [
+        9,
+        12
+      ],
+      "nfc": "שלום 123",
+      "nfkc": "שלום 123",
+      "python_wrap": [
+        "שלום",
+        "123"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        9,
+        12
+      ]
+    },
+    {
+      "text": "각가",
+      "width": 5,
+      "greedy": [
+        "각가"
+      ],
+      "breaks": [
+        3,
+        9
+      ],
+      "nfc": "각가",
+      "nfkc": "각가",
+      "python_wrap": [
+        "각가"
+      ],
+      "wrap_comparison": "equal",
+      "icu_breaks": [
+        3,
+        9
+      ]
+    }
+  ]
+}
