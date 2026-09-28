@@ -1,0 +1,4 @@
+import {
+  "ShiChengxu/moonlayout" @ml,
+  "moonbitlang/core/bench",
+} for "test"
