@@ -8,6 +8,8 @@ import {
 // Values
 pub fn display_width(String, ambiguous_wide? : Bool, tab_width? : Int) -> Int
 
+pub fn optimal_wrap(String, Int, opts? : WrapOptions, optimal? : OptimalOptions) -> Array[Line]
+
 pub fn wrap(String, Int, opts? : WrapOptions) -> Array[Line]
 
 // Errors
@@ -46,6 +48,17 @@ pub(all) struct Line {
 pub fn Line::equal(Self, Self) -> Bool
 pub fn Line::not_equal(Self, Self) -> Bool
 pub fn Line::to_repr(Self) -> @debug.Repr
+
+pub(all) struct OptimalOptions {
+  stretch : Int
+  shrink : Int
+  line_penalty : Int
+  hyphen_penalty : Int
+} derive(Eq, @debug.Debug)
+pub fn OptimalOptions::equal(Self, Self) -> Bool
+pub fn OptimalOptions::new(stretch? : Int, shrink? : Int, line_penalty? : Int, hyphen_penalty? : Int) -> Self
+pub fn OptimalOptions::not_equal(Self, Self) -> Bool
+pub fn OptimalOptions::to_repr(Self) -> @debug.Repr
 
 pub(all) enum WrapAlgorithm {
   Greedy
