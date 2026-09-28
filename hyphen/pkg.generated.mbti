@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "ShiChengxu/moonlayout/hyphen"
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Liang {
+  nodes : Array[Node]
+  exceptions : Map[String, Array[Int]]
+  left_min : Int
+  right_min : Int
+}
+pub fn Liang::english() -> Self
+pub fn Liang::new(Array[String], exceptions? : Array[String], left_min? : Int, right_min? : Int) -> Self
+pub fn Liang::positions(Self, String) -> Array[Int]
+pub impl Hyphenator for Liang
+
+type Node
+
+// Type aliases
+
+// Traits
+pub(open) trait Hyphenator {
+  fn positions(Self, String) -> Array[Int]
+}
