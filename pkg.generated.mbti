@@ -19,6 +19,8 @@ pub fn layout(String, @layout.LayoutStyle) -> Array[@wrap.Line]
 
 pub fn line_break_opportunities(String) -> Array[Int]
 
+pub fn optimal_wrap(String, Int, opts? : @wrap.WrapOptions, optimal? : @wrap.OptimalOptions) -> Array[@wrap.Line]
+
 pub fn segments(String, @segment.SegmentKind) -> Array[(Int, Int)]
 
 pub fn sentence_boundaries(String) -> Array[Int]
@@ -45,6 +47,8 @@ pub using @wrap {type BreakPolicy}
 pub using @layout {type LayoutStyle}
 
 pub using @wrap {type Line}
+
+pub using @wrap {type OptimalOptions}
 
 pub using @segment {type SegmentKind}
 

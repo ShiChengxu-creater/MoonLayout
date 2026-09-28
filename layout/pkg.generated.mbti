@@ -20,9 +20,10 @@ pub(all) struct LayoutStyle {
   wrap_algorithm : @wrap.WrapAlgorithm
   break_policy : @wrap.BreakPolicy
   tab_width : Int
+  optimal : @wrap.OptimalOptions
 } derive(Eq, @debug.Debug)
 pub fn LayoutStyle::equal(Self, Self) -> Bool
-pub fn LayoutStyle::new(Int, alignment? : @align.Alignment, ambiguous_wide? : Bool, wrap_algorithm? : @wrap.WrapAlgorithm, break_policy? : @wrap.BreakPolicy, tab_width? : Int) -> Self
+pub fn LayoutStyle::new(Int, alignment? : @align.Alignment, ambiguous_wide? : Bool, wrap_algorithm? : @wrap.WrapAlgorithm, break_policy? : @wrap.BreakPolicy, tab_width? : Int, optimal? : @wrap.OptimalOptions) -> Self
 pub fn LayoutStyle::not_equal(Self, Self) -> Bool
 pub fn LayoutStyle::to_repr(Self) -> @debug.Repr
 
@@ -34,6 +35,8 @@ pub using @wrap {type BreakKind}
 pub using @wrap {type BreakPolicy}
 
 pub using @wrap {type Line}
+
+pub using @wrap {type OptimalOptions}
 
 pub using @wrap {type WrapAlgorithm}
 
