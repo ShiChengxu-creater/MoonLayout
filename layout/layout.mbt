@@ -63,6 +63,11 @@ pub fn layout(text : String, style : LayoutStyle) -> Array[Line] {
     Optimal =>
       @wrap.optimal_wrap(text, style.max_width, opts~, optimal=style.optimal)
   }
+  finish(lines, style)
+}
+
+///|
+fn finish(lines : Array[Line], style : LayoutStyle) -> Array[Line] {
   let width = if style.max_width > 0 { style.max_width } else { 1 }
   let aligned = @align.align_lines(lines, width, style.alignment)
   lines.mapi(fn(i, line) {
@@ -75,4 +80,29 @@ pub fn layout(text : String, style : LayoutStyle) -> Array[Line] {
       ),
     }
   })
+}
+
+///|
+/// Layout with a caller-owned hyphenator. Reuse a compiled Liang trie between calls.
+pub fn[H : @hyphen.Hyphenator] layout_hyphenated(
+  text : String,
+  style : LayoutStyle,
+  hyphenator : H,
+) -> Array[Line] {
+  let opts = @wrap.WrapOptions::new(
+    ambiguous_wide=style.ambiguous_wide,
+    break_policy=style.break_policy,
+    tab_width=style.tab_width,
+  )
+  finish(
+    @wrap.wrap_hyphenated(
+      text,
+      style.max_width,
+      hyphenator,
+      algorithm=style.wrap_algorithm,
+      opts~,
+      optimal=style.optimal,
+    ),
+    style,
+  )
 }
