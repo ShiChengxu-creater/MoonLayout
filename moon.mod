@@ -15,7 +15,7 @@ version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = ""
+repository = "https://github.com/ShiChengxu-creater/MoonLayout"
 
 license = "Apache-2.0"
 
@@ -29,4 +29,6 @@ import {
   "kawaz/grapheme@0.10.4",
   "moonbit-community/unicodewidth@0.2.1",
   "moonbitlang/x@0.4.44",
+  "moonbit-community/bidi@0.5.0",
+  "moonbit-community/normalization@0.5.0",
 }
