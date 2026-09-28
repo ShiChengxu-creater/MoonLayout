@@ -22,3 +22,16 @@ test "valid/optimal layout facade" {
     "aaa", "bb bb", "ccccc",
   ])
 }
+
+///|
+test "valid/hyphenated layout facade" {
+  let style = @layout.LayoutStyle::new(7, wrap_algorithm=Optimal)
+  let lines = @layout.layout_hyphenated(
+    "hyphenation",
+    style,
+    @hyphen.Liang::english(),
+  )
+  assert_eq(lines.map(fn(l) { l.text }), ["hyphen-", "ation"])
+  assert_eq(lines.map(fn(l) { l.source }).join(""), "hyphenation")
+  assert_eq(lines[1].aligned_text, "ation  ")
+}

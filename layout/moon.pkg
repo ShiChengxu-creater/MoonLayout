@@ -1,4 +1,5 @@
 import {
+  "ShiChengxu/moonlayout/hyphen",
   "ShiChengxu/moonlayout/wrap",
   "ShiChengxu/moonlayout/align",
 }

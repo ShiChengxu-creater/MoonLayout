@@ -1,6 +1,6 @@
 ///|
 /// High-level paragraph layout facade.
-pub using @layout {type LayoutStyle, layout}
+pub using @layout {type LayoutStyle, layout, layout_hyphenated}
 
 ///|
 pub using @align {type Alignment, align_lines}
@@ -15,6 +15,7 @@ pub using @wrap {
   type BreakPolicy,
   wrap,
   optimal_wrap,
+  wrap_hyphenated,
   display_width,
 }
 
@@ -30,3 +31,6 @@ pub using @segment {
 
 ///|
 pub using @linebreak {line_break_opportunities, is_breakable_at}
+
+///|
+pub using @hyphen {type Liang, trait Hyphenator}

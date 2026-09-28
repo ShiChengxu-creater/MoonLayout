@@ -3,12 +3,15 @@ package "ShiChengxu/moonlayout/layout"
 
 import {
   "ShiChengxu/moonlayout/align",
+  "ShiChengxu/moonlayout/hyphen",
   "ShiChengxu/moonlayout/wrap",
   "moonbitlang/core/debug",
 }
 
 // Values
 pub fn layout(String, LayoutStyle) -> Array[@wrap.Line]
+
+pub fn[H : @hyphen.Hyphenator] layout_hyphenated(String, LayoutStyle, H) -> Array[@wrap.Line]
 
 // Errors
 
