@@ -12,15 +12,24 @@ pub fn[H : @hyphen.Hyphenator] wrap_hyphenated(
   optimal? : OptimalOptions = OptimalOptions::new(),
 ) -> Array[Line] {
   let points : Map[Int, Bool] = Map([])
-  let mut offset = 0
-  for word in @segment.words(s) {
-    let size = @text.byte_length(word)
+  let text = @text.scan(s)
+  for span in @segment.segments(s, @segment.Word) {
+    let (offset, end) = span
+    let start_scalar = match text.bytes.binary_search(offset) {
+      Ok(i) => i
+      Err(_) => continue
+    }
+    let end_scalar = match text.bytes.binary_search(end) {
+      Ok(i) => i
+      Err(_) => continue
+    }
+    let word = s[text.units[start_scalar]:text.units[end_scalar]].to_owned()
+    let size = end - offset
     for point in hyphenator.positions(word) {
       if point > 0 && point < size {
         points.set(offset + point, true)
       }
     }
-    offset += size
   }
   match algorithm {
     Greedy => greedy_points(s, max_width, opts, points)
