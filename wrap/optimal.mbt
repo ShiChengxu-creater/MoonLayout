@@ -105,6 +105,8 @@ fn optimal_points(
   let limit = if max_width > 0 { max_width } else { 1 }
   let gs = @grapheme.grapheme_iter(s).map(fn(g) { g.to_owned() }).to_array()
   let n = gs.length()
+  let hard_flags = gs.map(hard_cluster)
+  let widths = gs.map(fn(g) { cluster_width(g, 0, opts.ambiguous_wide, 1) })
   let bytes = [0]
   let units = [0]
   for g in gs {
@@ -139,9 +141,9 @@ fn optimal_points(
     let mut spaces = 0
     let mut visible_spaces = 0
     for i = start; i < n; i = i + 1 {
-      let hard = hard_cluster(gs[i])
+      let hard = hard_flags[i]
       if !hard {
-        width += cluster_width(gs[i], width, opts.ambiguous_wide, tab)
+        width += if gs[i] == "\t" { tab - width % tab } else { widths[i] }
         if gs[i] == " " {
           spaces += 1
         }

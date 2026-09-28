@@ -1,0 +1,28 @@
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:7 ("linebreak 4K") ok
+time (mean ± σ)         range (min … max) 
+ 330.90 µs ±   9.07 µs   318.75 µs … 346.67 µs  in 10 ×    295 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:13 ("word boundaries 4K") ok
+time (mean ± σ)         range (min … max) 
+  79.90 µs ±   2.29 µs    77.42 µs …  83.31 µs  in 10 ×   1273 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:19 ("sentence boundaries 4K") ok
+time (mean ± σ)         range (min … max) 
+  91.18 µs ±   1.61 µs    88.95 µs …  93.88 µs  in 10 ×   1016 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:25 ("greedy 4K width 80") ok
+time (mean ± σ)         range (min … max) 
+   3.43 ms ± 134.60 µs     3.26 ms …   3.65 ms  in 10 ×     32 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:31 ("optimal 4K width 80") ok
+time (mean ± σ)         range (min … max) 
+   6.28 ms ±  93.93 µs     6.11 ms …   6.40 ms  in 10 ×     16 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:37 ("justify 4K width 80") ok
+time (mean ± σ)         range (min … max) 
+   2.07 ms ±  49.33 µs     2.01 ms …   2.14 ms  in 10 ×     48 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:43 ("greedy large 64K width 80") ok
+time (mean ± σ)         range (min … max) 
+  55.06 ms ±   1.24 ms    53.84 ms …  57.38 ms  in 10 ×      2 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:49 ("optimal large 64K width 80") ok
+time (mean ± σ)         range (min … max) 
+ 102.09 ms ±   2.13 ms    99.87 ms … 106.51 ms  in 10 ×      1 runs
+[ShiChengxu/moonlayout] bench benchmarks/layout_bench_test.mbt:55 ("English hyphenation reused trie") ok
+time (mean ± σ)         range (min … max) 
+   1.54 µs ±  24.80 ns     1.50 µs …   1.59 µs  in 10 ×  64552 runs
+Total tests: 9, passed: 9, failed: 0.

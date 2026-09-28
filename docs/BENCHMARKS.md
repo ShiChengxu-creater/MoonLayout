@@ -22,3 +22,9 @@ The labels 4K/64K indicate approximate corpus sizes; exact input is the UTF-8 en
 Optimal wrapping enumerates feasible grapheme edges and minimizes emergency breaks first, then paragraph cost. O(n²) worst-case time, O(n) auxiliary space; fixed column widths usually bound the candidate window. Very wide or zero-width-heavy paragraphs remain expensive. Greedy is the default for interactive or untrusted large input. These figures measure this machine, not a cross-machine performance guarantee.
 
 Quality example at width 6: `aaa bb bb ccccc` has nonfinal squared slack 16 for greedy and 10 for optimal (final line unpenalized). Optimal is a quality/time tradeoff, not a faster greedy algorithm.
+
+## Width cache measurement
+
+The initial profile showed repeated Unicode width/property lookups for every candidate edge. The optimizer now computes each non-tab grapheme width and hard-break flag once; tabs still depend on the candidate line column. All behavior tests stayed green.
+
+On the same machine and native release harness (10 samples), large-text optimal time decreased from 2.17 s mean / 1.41 s minimum to 102.09 ms mean / 99.87 ms minimum. Greedy remained approximately 55 ms. Raw after-run data: [native-cached-widths.txt](benchmarks/native-cached-widths.txt). This measures a lookup cache improvement; it does not change the quadratic worst-case complexity.
