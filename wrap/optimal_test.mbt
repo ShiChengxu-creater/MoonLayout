@@ -40,3 +40,59 @@ test "valid/optimal configurable glue" {
     "a   b",
   )
 }
+
+///|
+test "regr/optimal oversized grapheme retains following hard break" {
+  let lines = @wrap.optimal_wrap("你\r\n", 1)
+  assert_eq(lines.map(fn(l) { l.text }), ["你", ""])
+  assert_eq(lines[0].break_kind, @wrap.Hard)
+  assert_eq(lines[0].source, "你\r\n")
+  assert_eq(@wrap.optimal_wrap("你  \n", 1)[0].source, "你  \n")
+}
+
+///|
+fn exhaustive_cost(words : Array[Int], start : Int, width : Int) -> Int {
+  if start == words.length() {
+    return 0
+  }
+  let mut best = 1000000
+  let mut used = 0
+  for end = start; end < words.length(); end = end + 1 {
+    used += words[end] + (if end > start { 1 } else { 0 })
+    if used > width {
+      break
+    }
+    let slack = width - used
+    let own = if end + 1 == words.length() { 1 } else { 1 + slack * slack }
+    let total = own + exhaustive_cost(words, end + 1, width)
+    if total < best {
+      best = total
+    }
+  }
+  best
+}
+
+///|
+test "property/optimal matches exhaustive small paragraph oracle" {
+  for a in [1, 2, 3] {
+    for b in [1, 2, 3] {
+      for c in [1, 2, 3] {
+        for d in [1, 2, 3] {
+          let sizes = [a, b, c, d]
+          let s = sizes.map(fn(n) { "x".repeat(n) }).join(" ")
+          for width in [3, 4, 5, 6, 7, 8] {
+            let lines = @wrap.optimal_wrap(s, width)
+            let mut cost = 0
+            for i, line in lines {
+              assert_true(line.break_kind != @wrap.Forced)
+              let slack = width - line.width
+              cost += 1 +
+                (if i + 1 == lines.length() { 0 } else { slack * slack })
+            }
+            assert_eq(cost, exhaustive_cost(sizes, 0, width))
+          }
+        }
+      }
+    }
+  }
+}

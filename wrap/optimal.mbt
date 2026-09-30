@@ -154,7 +154,11 @@ fn optimal_points(
       }
       let end = i + 1
       let shrink = visible_spaces * bounded(optimal.shrink, 1)
-      if visible - shrink > limit && i > start {
+      // An indivisible overwide first grapheme may carry trailing whitespace
+      // and its mandatory terminator, just as in greedy wrapping.
+      let oversized_tail = widths[start] > limit &&
+        (hard || trailing_space(gs[i]))
+      if visible - shrink > limit && i > start && !oversized_tail {
         break
       }
       let kind = if hard {
