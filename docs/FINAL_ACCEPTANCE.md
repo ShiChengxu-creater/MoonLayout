@@ -32,6 +32,8 @@ Physical nonblank, non-comment MoonBit lines at final implementation review: 1,9
 
 ## Publication evidence
 
-Local implementation and package consumption: passed. The final package excludes the proposal, goal.md, AGENTS.md and local process/cache directories. GitHub clean CI, Mooncakes publication and fresh registry installation are pending at this checkpoint; this local report does not claim they have already succeeded.
+Local implementation and package consumption: passed. The final package excludes the proposal, goal.md, AGENTS.md and local process/cache directories. On 2026-09-30, GitHub API authentication returned HTTP 401: the stored ShiChengxu-creater token had expired. No push was performed. GitHub clean CI, Mooncakes publication and fresh registry installation remain pending until authentication is restored. Mooncakes login was valid as ShiChengxu. This local report does not claim remote completion.
 
 For repeatable checks run `python scripts/verify.py`; detailed logs are under `.agent-workplace/verification`. That directory is deliberately excluded from distribution. See RELEASE.md for the migration and rollback plan.
+
+API documentation generation (`moon doc`) also passed. The final local working tree was clean after per-step commits; proposal hash was checked again after packaging.
