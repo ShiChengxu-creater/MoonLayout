@@ -15,3 +15,10 @@ Verification includes full official conformance, blackbox API/edge/property
 tests, all three backends, runnable examples, generator idempotence and an
 external consumer. Passing tests do not establish remote publication or a human
 review; those statuses are tracked separately in INITIAL_ACCEPTANCE.md.
+
+
+## Final acceptance 0.2.0
+
+Codex assisted with optimal breaking, Liang trie and integration adapters, regression/property tests, examples, benchmarks, differential tooling and documentation. The user selected version 0.2.0 and required per-step commits by ShiChengxu-creater while keeping the proposal unchanged. No human code review is claimed.
+
+English patterns are redistributed data with preserved permission notices, not independently authored vocabulary. BiDi/normalization reuse the named ecosystem packages. Native benchmark evidence includes before/after cache measurements. Full UAX fixtures, 486 exhaustive cost cases, real Python/ICU comparisons and three-backend packaged consumers check the result. No code was duplicated to meet estimated line counts.

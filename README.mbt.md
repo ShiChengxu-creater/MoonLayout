@@ -1,71 +1,80 @@
 # MoonLayout
 
-纯 MoonBit 的 Unicode 17.0.0 段落布局库，支持 native、wasm-gc、JavaScript。
+纯 MoonBit 的 Unicode 段落布局库。`0.2.0` 保留初验能力，增加最优换行、英文 Liang 连字符、BiDi／归一化集成，支持 native、wasm-gc、JavaScript。
 
-## 最小示例
+## 使用
 
-消费包在 `moon.pkg` 中导入 `"ShiChengxu/moonlayout" @ml`，然后调用`@ml.layout(text, @ml.LayoutStyle::new(width, alignment=Center))`。
-下面的根包文档测试由 `moon test` 实际编译执行：
+```sh
+moon add ShiChengxu/moonlayout@0.2.0
+```
 
-```mbt nocheck
-///|
-test "README minimum layout" {
-  let lines = layout("你好 MoonBit", LayoutStyle::new(8, alignment=Left))
-  assert_eq(lines.map(fn(line) { line.text }), ["你好", "MoonBit"])
-  assert_eq(lines.map(fn(line) { line.aligned_text }), [
-    "你好    ", "MoonBit ",
-  ])
-  assert_eq(lines.map(fn(line) { line.source }).join(""), "你好 MoonBit")
+在消费项目的 `moon.pkg` 导入 `"ShiChengxu/moonlayout" @ml`：
+
+```moonbit nocheck
+let style = @ml.LayoutStyle::new(16, wrap_algorithm=Optimal, alignment=Justify)
+let hyphenator = @ml.Liang::english() // 编译一次，重复使用
+let lines = @ml.layout_hyphenated("Hyphenation improves narrow paragraphs.", style, hyphenator)
+for line in lines {
+  println(line.aligned_text)
 }
 ```
 
-发布后可执行 `moon add ShiChengxu/moonlayout@0.1.0`；发布前使用本地 workspace消费方式，见 [TESTING](docs/TESTING.md)。
+不需要连字符时使用 `@ml.layout(text, style)`；低层接口为 `@ml.wrap`、`@ml.optimal_wrap` 和 `@ml.wrap_hyphenated`。默认仍为贪心换行。`OptimalOptions::new(stretch=2, shrink=1, line_penalty=100, hyphen_penalty=50)` 可配置空格伸缩和代价，通过 `LayoutStyle::new(..., optimal=options)` 传入。
 
-## 能力与约定
+## 可选 Unicode 集成
 
-- UAX #14 LB1–LB31：19,338 个 Unicode 17 官方断行用例。
-- UAX #29：1,944 个词边界和 512 个句边界官方用例。
-- 贪心换行、词／句边界偏好、超长词按完整字素强制切分。
-- 左／右／居中／两端对齐；中日韩字间距分配。
-- 所有公开位置均为 **UTF-8 字节偏移**，不是 MoonBit UTF-16 字符串索引。
-- `Line.source` 与 `[start,end)` 精确保留原文；拼接 source 可还原输入。
-- `Line.text` 去掉行尾 ASCII 空格、tab 和硬换行；内部 tab 展开为制表位。`aligned_text` 为最终显示文本，`width` 为它的显示列数。
-- 空输入返回空行数组；宽度 ≤ 0 按 1 处理；超宽单字素独占一行，允许溢出。
-- 对齐填充到目标宽度；不截断溢出。末行／硬换行行不拉伸两端对齐。
-- `words` 仅返回含字母或数字的段；`segments(..., Word)` 保留全部段。
+在 `moon.pkg` 额外导入 `"ShiChengxu/moonlayout/integration"`：
 
-字素切分依赖 `kawaz/grapheme@0.10.4`；显示宽度依赖`moonbit-community/unicodewidth@0.2.1`。宽度按字素的等宽显示列相加，不是字体整形后的像素宽度。
+```moonbit nocheck
+let result = @integration.layout(
+  "שלום 123 Ａ",
+  @ml.LayoutStyle::new(16),
+  normalization=NFKC,
+  bidi=true,
+)
+for line in result.lines {
+  println(line.aligned_text)
+}
+```
 
-宽度依赖内部数据版本为 Unicode 16（详见限制文档），断行／词句／字素规范为 Unicode 17。核心无文件、网络、时钟访问。
+`normalization` 可选 `Off`（默认）、`NFC`、`NFKC`；`direction` 可选 `Auto`、`LTR`、`RTL`。集成包也提供 `layout_hyphenated(text, style, hyphenator, ...)`。先归一化，再按逻辑顺序断行，最后按整段解析出的方向级别逐行输出视觉顺序，保留字素簇。
 
-## 示例
+## 能力与坐标约定
+
+- Unicode 17 UAX #14 断行以及 UAX #29 词／句边界；21,794 个官方用例全量验证。
+- 贪心与简化最优换行、可插拔 `Hyphenator`、左／右／居中／两端对齐和基础 CJK 字间距分配。
+- 所有 `start/end` 和边界位置都是 UTF-8 字节偏移，不能直接用于 MoonBit UTF-16 字符串切片。
+- `Line.source` 保留逻辑原文；普通布局拼接各行 `source` 等于输入。集成布局的区间和 `source` 对应 `LayoutResult.logical_text`；原始输入另存为 `original_text`，不提供归一化前后的逐字符反向映射。
+- `Line.text` 为逻辑显示内容，行尾空白和硬换行已去掉，tab 已展开，选中的连字符已插入；`aligned_text` 为最终显示文本，`width` 为其显示列数。BiDi 只改变最终视觉输出。
+- 空输入返回 `[]`；宽度 ≤ 0 按 1 处理；不可分割的超宽字素允许溢出；末尾硬换行保留最终空行。
+- `words` 返回含字母或数字的段，`segments(..., Word)` 保留全部段。连字符插件收到完整词边界段，返回词内 UTF-8 偏移；无效或字素内部断点被过滤。
+
+字素依赖 `kawaz/grapheme@0.10.4`（Unicode 17）。宽度、BiDi、归一化依赖使用 Unicode 16；这些原语不宣称 Unicode 17 一致性。核心布局不导入 BiDi／归一化包，但模块级依赖解析会下载它们。没有字体整形、光栅化或 NLP 分词。详见 [限制](docs/LIMITATIONS.md)。
+
+## 八个示例
 
 ```sh
 moon run examples/wrap_terminal
 moon run examples/cjk_mixed
 moon run examples/justify_paragraph
 moon run examples/word_boundaries
+moon run examples/hyphen_wrap
+moon run examples/optimal_wrap
+moon run examples/bidi_paragraph
+moon run examples/markdown_like
 ```
 
-每条命令也可加 `--target native` 或 `--target js`。
+可添加 `--target native`、`--target wasm-gc` 或 `--target js`。`markdown_like` 展示应用组合，不是 Markdown 解析器。
 
-## 本地验证
+## 验证与基准
 
 ```sh
-moon info
-moon fmt --check
-moon check --target native --deny-warn
-moon test --target native --deny-warn
-moon check --target wasm-gc --deny-warn
-moon test --target wasm-gc --deny-warn
-moon check --target js --deny-warn
-moon test --target js --deny-warn
+python scripts/verify.py
+moon bench -p ShiChengxu/moonlayout/benchmarks --target native --release
 ```
 
-官方用例已嵌入测试，运行时不需要下载或读取文件。数据生成和幂等性验证见[DATA_PIPELINE](docs/DATA_PIPELINE.md)。API 以各包 `pkg.generated.mbti` 为准。
+验证涵盖三后端检查和测试、24 次示例运行、生成幂等性、Python／ICU 差分以及打包后独立消费项目。Linux 差分测试需要 `libicu-dev`，Windows 使用系统 ICU；Python 仅用于开发验证。规范测试和核心 API 不访问网络或时钟。
 
-## 范围
+参见 [设计](docs/DESIGN.md)、[测试](docs/TESTING.md)、[UAX 条款矩阵](docs/UAX_SUPPORT.md)、[性能数据](docs/BENCHMARKS.md)、[发布与迁移](docs/RELEASE.md)。
 
-0.1.0 实现初验 M0–M4。最优换行、连字符词典、BiDi 重排、归一化集成属于后续阶段；当前不暴露假实现。不是渲染器、正则库或 NLP 分词器。默认 UAX 规则没有语言词典 tailoring；详见 [LIMITATIONS](docs/LIMITATIONS.md)。
-
-原始代码 Apache-2.0；Unicode 数据使用 Unicode License v3。参见 [THIRD_PARTY](THIRD_PARTY.md)、[REFERENCES](REFERENCES.md) 和 [AI_USAGE](AI_USAGE.md)。
+原始实现采用 Apache-2.0；Unicode 数据和英文连字符模式分别保留其上游许可。参见 [THIRD_PARTY](THIRD_PARTY.md)、[REFERENCES](REFERENCES.md)、[AI_USAGE](AI_USAGE.md)。

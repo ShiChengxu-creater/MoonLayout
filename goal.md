@@ -9,7 +9,7 @@
 **Unicode 版本：** 17.0.0（与依赖 `kawaz/grapheme` 对齐）
 **目标后端：** native、wasm-gc、js
 **初验版本：** `0.1.0`
-**终验版本：** `1.0.0`
+**终验版本：** `0.2.0`
 **目标代码规模：**
 
 - 初验：4,500～5,500 行有效 MoonBit 代码
@@ -295,7 +295,7 @@ pub fn layout(text : String, style : LayoutStyle) -> Array[Line]
 - `THIRD_PARTY.md` 记录 Unicode License v3 与依赖来源
 - Git 提交体现各里程碑
 
-## 十、终验阶段计划（1.0.0）
+## 十、终验阶段计划（0.2.0）
 
 ### 10.1 终验目标
 成为可被 TUI / 编辑器 / 文档工具依赖的段落布局引擎，支持最优换行、两端对齐与连字符，并与 BiDi/归一化集成。
@@ -334,7 +334,7 @@ pub fn layout(text : String, style : LayoutStyle) -> Array[Line]
 目标控制在约 9,000 行，不超过 10,000。
 
 ### 10.5 终验验收标准
-- 发布 `1.0.0`，初验能力全部保留
+- 发布 `0.2.0`，初验能力全部保留
 - 全部 UAX 一致性测试通过
 - 贪心与最优换行均可运行并有基准对比
 - 连字符与 BiDi/归一化集成示例可运行
@@ -369,7 +369,7 @@ Hyphenator trait + 英文 Liang 模式。
 BiDi / 归一化集成示例。
 
 ### M8：终验产品化
-UAX 矩阵、差分测试、API 稳定化、mooncakes `1.0.0`。
+UAX 矩阵、差分测试、API 稳定化、mooncakes `0.2.0`。
 
 ## 十二、测试体系
 
@@ -496,7 +496,7 @@ break_data + ucd_gen
 + 差分测试
 + UAX 条款矩阵与完整文档
 ```
-目标：8,000～10,000 行；8 个示例；全部一致性测试通过；稳定 API；mooncakes.io `1.0.0`。
+目标：8,000～10,000 行；8 个示例；全部一致性测试通过；稳定 API；mooncakes.io `0.2.0`。
 
 ## 十九、最终项目说明
 
