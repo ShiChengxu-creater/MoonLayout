@@ -1,2 +1,4 @@
 * text=auto eol=lf
 /testdata/ucd/* -text -whitespace
+
+/testdata/hyphen/hyph-en-us.tex -text -whitespace

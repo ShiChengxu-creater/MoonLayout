@@ -1,4 +1,4 @@
-name: Initial acceptance
+name: Final acceptance
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
@@ -18,6 +18,8 @@ jobs:
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - run: moon version --all
+      - name: Install ICU for differential checks
+        run: sudo apt-get update && sudo apt-get install -y libicu-dev
       - name: Update MoonBit registry
         run: moon update
       - name: Unicode data, three backends, examples and packaged consumer
@@ -31,3 +33,4 @@ jobs:
           path: |
             .agent-workplace/verification/*.log
             .agent-workplace/verification/summary.json
+            .agent-workplace/verification/differential.json
