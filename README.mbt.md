@@ -10,7 +10,7 @@ moon add ShiChengxu/moonlayout@0.2.0
 
 在消费项目的 `moon.pkg` 导入 `"ShiChengxu/moonlayout" @ml`：
 
-```moonbit
+```moonbit nocheck
 let style = @ml.LayoutStyle::new(16, wrap_algorithm=Optimal, alignment=Justify)
 let hyphenator = @ml.Liang::english() // 编译一次，重复使用
 let lines = @ml.layout_hyphenated("Hyphenation improves narrow paragraphs.", style, hyphenator)
@@ -25,7 +25,7 @@ for line in lines {
 
 在 `moon.pkg` 额外导入 `"ShiChengxu/moonlayout/integration"`：
 
-```moonbit
+```moonbit nocheck
 let result = @integration.layout(
   "שלום 123 Ａ",
   @ml.LayoutStyle::new(16),
