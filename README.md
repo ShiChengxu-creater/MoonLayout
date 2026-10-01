@@ -75,6 +75,6 @@ moon bench -p ShiChengxu/moonlayout/benchmarks --target native --release
 
 验证涵盖三后端检查和测试、24 次示例运行、生成幂等性、Python／ICU 差分以及打包后独立消费项目。Linux 差分测试需要 `libicu-dev`，Windows 使用系统 ICU；Python 仅用于开发验证。规范测试和核心 API 不访问网络或时钟。
 
-参见 [设计](docs/DESIGN.md)、[测试](docs/TESTING.md)、[UAX 条款矩阵](docs/UAX_SUPPORT.md)、[性能数据](docs/BENCHMARKS.md)、[发布与迁移](docs/RELEASE.md)。
+参见 [设计](docs/DESIGN.md)、[测试](docs/TESTING.md)、[UAX 条款矩阵](docs/UAX_SUPPORT.md)、[性能数据](docs/BENCHMARKS.md)。
 
 原始实现采用 Apache-2.0；Unicode 数据和英文连字符模式分别保留其上游许可。参见 [THIRD_PARTY](THIRD_PARTY.md)、[REFERENCES](REFERENCES.md)、[AI_USAGE](AI_USAGE.md)。
