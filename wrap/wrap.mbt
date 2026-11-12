@@ -18,10 +18,10 @@ fn trailing_space(s : String) -> Bool {
 ///|
 fn cluster_width(
   s : String,
-  column : Int,
+  column : Int32,
   ambiguous_wide : Bool,
-  tab_width : Int,
-) -> Int {
+  tab_width : Int32,
+) -> Int32 {
   if s == "\t" {
     tab_width - column % tab_width
   } else if hard_cluster(s) {
@@ -37,9 +37,9 @@ fn cluster_width(
 /// does not perform font shaping or cross-grapheme ligature measurements.
 pub fn display_width(
   s : String,
-  ambiguous_wide? : Bool = false,
-  tab_width? : Int = 4,
-) -> Int {
+  ambiguous_wide~ : Bool = false,
+  tab_width~ : Int32 = 4,
+) -> Int32 {
   let tab = if tab_width > 0 { tab_width } else { 1 }
   let mut column = 0
   for g in @grapheme.grapheme_iter(s) {
@@ -52,10 +52,10 @@ pub fn display_width(
 fn make_line(
   s : String,
   gs : Array[String],
-  bytes : Array[Int],
-  units : Array[Int],
-  start : Int,
-  end : Int,
+  bytes : Array[Int32],
+  units : Array[Int32],
+  start : Int32,
+  end : Int32,
   kind : BreakKind,
   opts : WrapOptions,
 ) -> Line {
@@ -102,8 +102,8 @@ fn make_line(
 /// grapheme wider than the limit occupies its own line without being split.
 pub fn wrap(
   s : String,
-  max_width : Int,
-  opts? : WrapOptions = WrapOptions::new(),
+  max_width : Int32,
+  opts~ : WrapOptions = WrapOptions::new(),
 ) -> Array[Line] {
   greedy_points(s, max_width, opts, Map([]))
 }
@@ -111,9 +111,9 @@ pub fn wrap(
 ///|
 fn greedy_points(
   s : String,
-  max_width : Int,
+  max_width : Int32,
   opts : WrapOptions,
-  points : Map[Int, Bool],
+  points : Map[Int32, Bool],
 ) -> Array[Line] {
   if s.is_empty() {
     return []

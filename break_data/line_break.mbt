@@ -2,6 +2,7 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum LineBreak {
   AI
   AK
@@ -52,7 +53,7 @@ pub(all) enum LineBreak {
   XX
   ZW
   ZWJ
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend LineBreak with Eq::{not_equal, equal}
@@ -61,7 +62,7 @@ pub extend LineBreak with Eq::{not_equal, equal}
 pub extend LineBreak with Debug::{to_repr}
 
 ///|
-let line_break_ranges : ReadOnlyArray[(Int, Int, LineBreak)] = [
+let line_break_ranges : ReadOnlyArray[(Int32, Int32, LineBreak)] = [
   (0, 8, CM),
   (9, 9, BA),
   (10, 10, LF),
@@ -2983,6 +2984,6 @@ let line_break_ranges : ReadOnlyArray[(Int, Int, LineBreak)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn line_break(codepoint : Int) -> LineBreak {
+pub fn line_break(codepoint : Int32) -> LineBreak {
   lookup(line_break_ranges, codepoint, XX)
 }

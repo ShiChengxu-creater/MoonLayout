@@ -1,5 +1,5 @@
 ///|
-fn boundary_strings(s : String, boundaries : Array[Int]) -> Array[String] {
+fn boundary_strings(s : String, boundaries : Array[Int32]) -> Array[String] {
   let text = @text.scan(s)
   let result = []
   let mut start_unit = 0

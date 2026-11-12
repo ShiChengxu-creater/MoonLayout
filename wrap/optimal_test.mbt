@@ -51,7 +51,7 @@ test "regr/optimal oversized grapheme retains following hard break" {
 }
 
 ///|
-fn exhaustive_cost(words : Array[Int], start : Int, width : Int) -> Int {
+fn exhaustive_cost(words : Array[Int32], start : Int32, width : Int32) -> Int32 {
   if start == words.length() {
     return 0
   }

@@ -2,6 +2,7 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum GeneralCategory {
   Cc
   Cf
@@ -33,7 +34,7 @@ pub(all) enum GeneralCategory {
   Zl
   Zp
   Zs
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend GeneralCategory with Eq::{not_equal, equal}
@@ -42,7 +43,7 @@ pub extend GeneralCategory with Eq::{not_equal, equal}
 pub extend GeneralCategory with Debug::{to_repr}
 
 ///|
-let general_category_ranges : ReadOnlyArray[(Int, Int, GeneralCategory)] = [
+let general_category_ranges : ReadOnlyArray[(Int32, Int32, GeneralCategory)] = [
   (0, 31, Cc),
   (32, 32, Zs),
   (33, 35, Po),
@@ -3456,6 +3457,6 @@ let general_category_ranges : ReadOnlyArray[(Int, Int, GeneralCategory)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn general_category(codepoint : Int) -> GeneralCategory {
+pub fn general_category(codepoint : Int32) -> GeneralCategory {
   lookup(general_category_ranges, codepoint, Cn)
 }

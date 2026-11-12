@@ -2,8 +2,8 @@
 /// Compare every official test boundary, reporting at most 12 counterexamples.
 pub fn check(
   fixture : String,
-  boundaries : (String) -> Array[Int],
-) -> (Int, Array[String]) raise {
+  boundaries : (String) -> Array[Int32],
+) -> (Int32, Array[String]) raise {
   let failures : Array[String] = []
   let mut count = 0
   let mut failed = 0
@@ -13,7 +13,7 @@ pub fn check(
     }
     count += 1
     let builder = StringBuilder()
-    let expected : Array[Int] = []
+    let expected : Array[Int32] = []
     let mut offset = 0
     for part in row.split(" ") {
       if part == "÷" {

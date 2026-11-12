@@ -2,10 +2,11 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum EmojiProperty {
   Other
   Extended_Pictographic
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend EmojiProperty with Eq::{not_equal, equal}
@@ -14,7 +15,7 @@ pub extend EmojiProperty with Eq::{not_equal, equal}
 pub extend EmojiProperty with Debug::{to_repr}
 
 ///|
-let emoji_property_ranges : ReadOnlyArray[(Int, Int, EmojiProperty)] = [
+let emoji_property_ranges : ReadOnlyArray[(Int32, Int32, EmojiProperty)] = [
   (169, 169, Extended_Pictographic),
   (174, 174, Extended_Pictographic),
   (8252, 8252, Extended_Pictographic),
@@ -175,6 +176,6 @@ let emoji_property_ranges : ReadOnlyArray[(Int, Int, EmojiProperty)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn emoji_property(codepoint : Int) -> EmojiProperty {
+pub fn emoji_property(codepoint : Int32) -> EmojiProperty {
   lookup(emoji_property_ranges, codepoint, Other)
 }

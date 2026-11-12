@@ -15,7 +15,7 @@ fn terminal(c : @data.SentenceBreak) -> Bool {
 }
 
 ///|
-fn sentence_break_at(cs : Array[@data.SentenceBreak], i : Int) -> Bool {
+fn sentence_break_at(cs : Array[@data.SentenceBreak], i : Int32) -> Bool {
   let a = cs[i - 1]
   let b = cs[i]
   if a == CR && b == LF {
@@ -76,10 +76,10 @@ fn sentence_break_at(cs : Array[@data.SentenceBreak], i : Int) -> Bool {
 ///|
 /// Unicode 17 UAX #29 sentence boundaries as UTF-8 byte offsets. Includes both
 /// endpoints. Separators and trailing spaces belong to the preceding sentence.
-pub fn sentence_boundaries(s : String) -> Array[Int] {
+pub fn sentence_boundaries(s : String) -> Array[Int32] {
   let text = @text.scan(s)
   let classes : Array[@data.SentenceBreak] = []
-  let positions : Array[Int] = []
+  let positions : Array[Int32] = []
   for i, cp in text.chars {
     let c = @data.sentence_break(cp)
     if c == Extend || c == Format {
@@ -112,10 +112,11 @@ pub fn sentences(s : String) -> Array[String] {
 
 ///|
 /// Select the default Unicode boundary algorithm.
+#derive(Eq, Debug)
 pub(all) enum SegmentKind {
   Word
   Sentence
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend SegmentKind with Eq::{not_equal, equal}
@@ -125,7 +126,7 @@ pub extend SegmentKind with Debug::{to_repr}
 
 ///|
 /// All half-open UTF-8 byte ranges, including whitespace/punctuation segments.
-pub fn segments(s : String, kind : SegmentKind) -> Array[(Int, Int)] {
+pub fn segments(s : String, kind : SegmentKind) -> Array[(Int32, Int32)] {
   let boundaries = match kind {
     Word => word_boundaries(s)
     Sentence => sentence_boundaries(s)

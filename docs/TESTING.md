@@ -2,7 +2,7 @@
 
 Run `python scripts/verify.py` from the repository root for the reproducible local acceptance checks. It fails on a nonzero subprocess exit or changed generated data, and writes detailed logs under .agent-workplace/verification. Python is developer tooling only, never a library runtime dependency.
 
-The full matrix is fmt, warning-free check/test for native, wasm-gc and js, all eight examples (24 backend/example runs), generated interface synchronization, UCD hashes and generation idempotence. Official case counts are 19,338 line + 1,944 word + 512 sentence. Each official test batch checks its expected case count as well as every break.
+The full matrix is fmt, warning-free check/build/test for native, wasm-gc and js, all eight examples (24 backend/example runs), generated interface synchronization, UCD hashes and generation idempotence. The summary records the actual `moon version --all` output and resolved dependency tree. Official case counts are 19,338 line + 1,944 word + 512 sentence. Each official test batch checks its expected case count as well as every break.
 
 Tests also cover UTF-8 offsets, empty input, invalid indices, CRLF and blank lines, oversized graphemes, emoji/combining sequences, tab stops, ambiguous width, CJK justification, alignment widths and exact source reconstruction. Native has 3 additional generator tests because the tool is native-only.
 

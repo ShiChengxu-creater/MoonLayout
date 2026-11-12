@@ -1,9 +1,9 @@
 ///|
 /// A scalar view with explicit UTF-8 byte and UTF-16 string offsets.
 pub struct Text {
-  chars : Array[Int]
-  bytes : Array[Int]
-  units : Array[Int]
+  chars : Array[Int32]
+  bytes : Array[Int32]
+  units : Array[Int32]
 }
 
 ///|
@@ -27,7 +27,7 @@ pub fn scan(s : String) -> Text {
 
 ///|
 /// UTF-8 width of a Unicode scalar.
-pub fn utf8_length(cp : Int) -> Int {
+pub fn utf8_length(cp : Int32) -> Int32 {
   if cp < 0x80 {
     1
   } else if cp < 0x800 {
@@ -41,6 +41,6 @@ pub fn utf8_length(cp : Int) -> Int {
 
 ///|
 /// UTF-8 byte length, independent of the backend string representation.
-pub fn byte_length(s : String) -> Int {
+pub fn byte_length(s : String) -> Int32 {
   s.iter().fold(init=0, fn(n, c) { n + utf8_length(c.to_int()) })
 }

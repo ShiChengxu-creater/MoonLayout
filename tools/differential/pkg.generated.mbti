@@ -1,12 +1,17 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "ShiChengxu/moonlayout/tools/differential"
 
+import {
+  "moonbitlang/core/json",
+}
+
 // Values
 
 // Errors
 
 // Types and methods
-type Case derive(ToJson)
+#derive(@json.ToJson)
+type Case
 
 // Type aliases
 

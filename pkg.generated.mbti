@@ -10,33 +10,33 @@ import {
 }
 
 // Values
-pub fn align_lines(Array[@wrap.Line], Int, @align.Alignment) -> Array[String]
+pub fn align_lines(Array[@wrap.Line], Int32, @align.Alignment) -> Array[String]
 
-pub fn display_width(String, ambiguous_wide? : Bool, tab_width? : Int) -> Int
+pub fn display_width(String, ambiguous_wide? : Bool, tab_width? : Int32) -> Int32
 
-pub fn is_breakable_at(String, Int) -> Bool
+pub fn is_breakable_at(String, Int32) -> Bool
 
 pub fn layout(String, @layout.LayoutStyle) -> Array[@wrap.Line]
 
 pub fn[H : @hyphen.Hyphenator] layout_hyphenated(String, @layout.LayoutStyle, H) -> Array[@wrap.Line]
 
-pub fn line_break_opportunities(String) -> Array[Int]
+pub fn line_break_opportunities(String) -> Array[Int32]
 
-pub fn optimal_wrap(String, Int, opts? : @wrap.WrapOptions, optimal? : @wrap.OptimalOptions) -> Array[@wrap.Line]
+pub fn optimal_wrap(String, Int32, opts? : @wrap.WrapOptions, optimal? : @wrap.OptimalOptions) -> Array[@wrap.Line]
 
-pub fn segments(String, @segment.SegmentKind) -> Array[(Int, Int)]
+pub fn segments(String, @segment.SegmentKind) -> Array[(Int32, Int32)]
 
-pub fn sentence_boundaries(String) -> Array[Int]
+pub fn sentence_boundaries(String) -> Array[Int32]
 
 pub fn sentences(String) -> Array[String]
 
-pub fn word_boundaries(String) -> Array[Int]
+pub fn word_boundaries(String) -> Array[Int32]
 
 pub fn words(String) -> Array[String]
 
-pub fn wrap(String, Int, opts? : @wrap.WrapOptions) -> Array[@wrap.Line]
+pub fn wrap(String, Int32, opts? : @wrap.WrapOptions) -> Array[@wrap.Line]
 
-pub fn[H : @hyphen.Hyphenator] wrap_hyphenated(String, Int, H, algorithm? : @wrap.WrapAlgorithm, opts? : @wrap.WrapOptions, optimal? : @wrap.OptimalOptions) -> Array[@wrap.Line]
+pub fn[H : @hyphen.Hyphenator] wrap_hyphenated(String, Int32, H, algorithm? : @wrap.WrapAlgorithm, opts? : @wrap.WrapOptions, optimal? : @wrap.OptimalOptions) -> Array[@wrap.Line]
 
 // Errors
 

@@ -8,13 +8,13 @@ package "ShiChengxu/moonlayout/hyphen"
 // Types and methods
 pub struct Liang {
   nodes : Array[Node]
-  exceptions : Map[String, Array[Int]]
-  left_min : Int
-  right_min : Int
+  exceptions : Map[String, Array[Int32]]
+  left_min : Int32
+  right_min : Int32
 }
 pub fn Liang::english() -> Self
-pub fn Liang::new(Array[String], exceptions? : Array[String], left_min? : Int, right_min? : Int) -> Self
-pub fn Liang::positions(Self, String) -> Array[Int]
+pub fn Liang::new(Array[String], exceptions? : Array[String], left_min? : Int32, right_min? : Int32) -> Self
+pub fn Liang::positions(Self, String) -> Array[Int32]
 pub impl Hyphenator for Liang
 
 type Node
@@ -23,5 +23,5 @@ type Node
 
 // Traits
 pub(open) trait Hyphenator {
-  fn positions(Self, String) -> Array[Int]
+  fn positions(Self, String) -> Array[Int32]
 }

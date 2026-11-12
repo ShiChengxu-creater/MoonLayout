@@ -2,19 +2,19 @@
 package "ShiChengxu/moonlayout/internal/text"
 
 // Values
-pub fn byte_length(String) -> Int
+pub fn byte_length(String) -> Int32
 
 pub fn scan(String) -> Text
 
-pub fn utf8_length(Int) -> Int
+pub fn utf8_length(Int32) -> Int32
 
 // Errors
 
 // Types and methods
 pub struct Text {
-  chars : Array[Int]
-  bytes : Array[Int]
-  units : Array[Int]
+  chars : Array[Int32]
+  bytes : Array[Int32]
+  units : Array[Int32]
 }
 
 // Type aliases

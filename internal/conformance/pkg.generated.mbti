@@ -2,7 +2,7 @@
 package "ShiChengxu/moonlayout/internal/conformance"
 
 // Values
-pub fn check(String, (String) -> Array[Int]) -> (Int, Array[String]) raise
+pub fn check(String, (String) -> Array[Int32]) -> (Int32, Array[String]) raise
 
 // Errors
 

@@ -2,6 +2,7 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum WordBreak {
   CR
   LF
@@ -22,7 +23,7 @@ pub(all) enum WordBreak {
   Single_Quote
   Hebrew_Letter
   Regional_Indicator
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend WordBreak with Eq::{not_equal, equal}
@@ -31,7 +32,7 @@ pub extend WordBreak with Eq::{not_equal, equal}
 pub extend WordBreak with Debug::{to_repr}
 
 ///|
-let word_break_ranges : ReadOnlyArray[(Int, Int, WordBreak)] = [
+let word_break_ranges : ReadOnlyArray[(Int32, Int32, WordBreak)] = [
   (10, 10, LF),
   (11, 12, Newline),
   (13, 13, CR),
@@ -1136,6 +1137,6 @@ let word_break_ranges : ReadOnlyArray[(Int, Int, WordBreak)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn word_break(codepoint : Int) -> WordBreak {
+pub fn word_break(codepoint : Int32) -> WordBreak {
   lookup(word_break_ranges, codepoint, Other)
 }

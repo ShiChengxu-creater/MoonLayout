@@ -1,5 +1,9 @@
 ///|
-fn[T] lookup(ranges : ReadOnlyArray[(Int, Int, T)], cp : Int, default : T) -> T {
+fn[T] lookup(
+  ranges : ReadOnlyArray[(Int32, Int32, T)],
+  cp : Int32,
+  default : T,
+) -> T {
   let mut lo = 0
   let mut hi = ranges.length()
   while lo < hi {

@@ -1,17 +1,19 @@
 ///|
+#derive(Eq, Debug)
 struct Range {
-  lo : Int
-  hi : Int
+  lo : Int32
+  hi : Int32
   property : String
-} derive(Eq, Debug)
+}
 
 ///|
+#derive(Debug)
 suberror DataError {
   InvalidData(String)
-} derive(Debug)
+}
 
 ///|
-fn parse_ucd(text : String, only? : String = "") -> Array[Range] raise {
+fn parse_ucd(text : String, only~ : String = "") -> Array[Range] raise {
   let rows : Array[Range] = []
   for raw in text.split("\n") {
     let body = raw.to_owned().split("#").to_array()[0].trim()
@@ -92,17 +94,17 @@ fn emit(
   out.write_string(
     "// Unicode License v3; see THIRD_PARTY.md. Do not edit.\n\n///|\n",
   )
-  out.write_string("pub(all) enum \{type_name} {\n")
+  out.write_string("#derive(Eq, Debug)\npub(all) enum \{type_name} {\n")
   for property in properties {
     out.write_string("  \{property}\n")
   }
-  out.write_string("} derive(Eq, Debug)\n\n///|\n")
+  out.write_string("}\n\n///|\n")
   out.write_string(
     "pub extend \{type_name} with Eq::{not_equal, equal}\n\n///|\n",
   )
   out.write_string("pub extend \{type_name} with Debug::{to_repr}\n\n///|\n")
   out.write_string(
-    "let \{function}_ranges : ReadOnlyArray[(Int, Int, \{type_name})] = [\n",
+    "let \{function}_ranges : ReadOnlyArray[(Int32, Int32, \{type_name})] = [\n",
   )
   for row in rows {
     if row.property != default {

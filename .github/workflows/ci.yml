@@ -1,5 +1,10 @@
-name: Final acceptance
-on: [push, pull_request, workflow_dispatch]
+name: Toolchain compatibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 2 * * 1'
 permissions:
   contents: read
 jobs:
@@ -17,7 +22,10 @@ jobs:
         run: |
           curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
-      - run: moon version --all
+      - name: Record current official toolchain
+        run: |
+          mkdir -p .agent-workplace/verification
+          moon version --all | tee .agent-workplace/verification/toolchain.log
       - name: Install ICU for differential checks
         run: sudo apt-get update && sudo apt-get install -y libicu-dev
       - name: Update MoonBit registry
@@ -30,6 +38,7 @@ jobs:
         if: always()
         with:
           name: acceptance-logs
+          include-hidden-files: true
           path: |
             .agent-workplace/verification/*.log
             .agent-workplace/verification/summary.json

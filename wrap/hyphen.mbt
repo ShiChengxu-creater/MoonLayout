@@ -5,13 +5,13 @@
 /// only at a selected break and never changes source or start/end offsets.
 pub fn[H : @hyphen.Hyphenator] wrap_hyphenated(
   s : String,
-  max_width : Int,
+  max_width : Int32,
   hyphenator : H,
-  algorithm? : WrapAlgorithm = Greedy,
-  opts? : WrapOptions = WrapOptions::new(),
-  optimal? : OptimalOptions = OptimalOptions::new(),
+  algorithm~ : WrapAlgorithm = Greedy,
+  opts~ : WrapOptions = WrapOptions::new(),
+  optimal~ : OptimalOptions = OptimalOptions::new(),
 ) -> Array[Line] {
-  let points : Map[Int, Bool] = Map([])
+  let points : Map[Int32, Bool] = Map([])
   let text = @text.scan(s)
   for span in @segment.segments(s, @segment.Word) {
     let (offset, end) = span

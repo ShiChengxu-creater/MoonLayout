@@ -2,6 +2,7 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum SentenceBreak {
   CR
   LF
@@ -18,7 +19,7 @@ pub(all) enum SentenceBreak {
   Numeric
   OLetter
   SContinue
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend SentenceBreak with Eq::{not_equal, equal}
@@ -27,7 +28,7 @@ pub extend SentenceBreak with Eq::{not_equal, equal}
 pub extend SentenceBreak with Debug::{to_repr}
 
 ///|
-let sentence_break_ranges : ReadOnlyArray[(Int, Int, SentenceBreak)] = [
+let sentence_break_ranges : ReadOnlyArray[(Int32, Int32, SentenceBreak)] = [
   (9, 9, Sp),
   (10, 10, LF),
   (11, 12, Sp),
@@ -2527,6 +2528,6 @@ let sentence_break_ranges : ReadOnlyArray[(Int, Int, SentenceBreak)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn sentence_break(codepoint : Int) -> SentenceBreak {
+pub fn sentence_break(codepoint : Int32) -> SentenceBreak {
   lookup(sentence_break_ranges, codepoint, Other)
 }

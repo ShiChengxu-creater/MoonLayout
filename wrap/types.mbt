@@ -1,12 +1,13 @@
 ///|
 /// Reason a line ended. Forced is an emergency grapheme boundary; End is EOF.
+#derive(Eq, Debug)
 pub(all) enum BreakKind {
   Soft
   Hyphenated
   Hard
   Forced
   End
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend BreakKind with Eq::{not_equal, equal}
@@ -17,12 +18,13 @@ pub extend BreakKind with Debug::{to_repr}
 ///|
 /// Preferred boundaries. Word/Sentence intersect UAX #14; Grapheme allows every
 /// grapheme boundary. Emergency splitting still applies when a unit is too long.
+#derive(Eq, Debug)
 pub(all) enum BreakPolicy {
   Unicode
   Word
   Sentence
   Grapheme
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend BreakPolicy with Eq::{not_equal, equal}
@@ -32,10 +34,11 @@ pub extend BreakPolicy with Debug::{to_repr}
 
 ///|
 /// Greedy fills each line; Optimal minimizes paragraph badness.
+#derive(Eq, Debug)
 pub(all) enum WrapAlgorithm {
   Greedy
   Optimal
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend WrapAlgorithm with Eq::{not_equal, equal}
@@ -44,11 +47,12 @@ pub extend WrapAlgorithm with Eq::{not_equal, equal}
 pub extend WrapAlgorithm with Debug::{to_repr}
 
 ///|
+#derive(Eq, Debug)
 pub(all) struct WrapOptions {
   ambiguous_wide : Bool
   break_policy : BreakPolicy
-  tab_width : Int
-} derive(Eq, Debug)
+  tab_width : Int32
+}
 
 ///|
 pub extend WrapOptions with Eq::{not_equal, equal}
@@ -59,9 +63,9 @@ pub extend WrapOptions with Debug::{to_repr}
 ///|
 /// Nonpositive tab widths normalize to one column.
 pub fn WrapOptions::new(
-  ambiguous_wide? : Bool = false,
-  break_policy? : BreakPolicy = Unicode,
-  tab_width? : Int = 4,
+  ambiguous_wide~ : Bool = false,
+  break_policy~ : BreakPolicy = Unicode,
+  tab_width~ : Int32 = 4,
 ) -> WrapOptions {
   {
     ambiguous_wide,
@@ -78,16 +82,17 @@ pub fn WrapOptions::new(
 /// Exact source range [start,end) in UTF-8 bytes, with a lossless source copy.
 /// text is trimmed/expanded content; aligned_text is the final display string.
 /// width measures aligned_text. Wrapping initially sets aligned_text = text.
+#derive(Eq, Debug)
 pub(all) struct Line {
-  start : Int
-  end : Int
+  start : Int32
+  end : Int32
   source : String
   text : String
-  width : Int
+  width : Int32
   break_kind : BreakKind
   aligned_text : String
   ambiguous_wide : Bool
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend Line with Eq::{not_equal, equal}

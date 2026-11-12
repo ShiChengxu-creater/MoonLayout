@@ -1,5 +1,5 @@
 ///|
-fn corpus(repeats : Int) -> String {
+fn corpus(repeats : Int32) -> String {
   "MoonLayout measures Unicode 段落 and emoji 👩‍🔬. ".repeat(repeats)
 }
 

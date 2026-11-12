@@ -1,11 +1,12 @@
 ///|
 /// Horizontal alignment in monospace display columns.
+#derive(Eq, Debug)
 pub(all) enum Alignment {
   Left
   Right
   Center
   Justify
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend Alignment with Eq::{not_equal, equal}
@@ -26,10 +27,10 @@ fn cjk(s : String) -> Bool {
 }
 
 ///|
-fn justify(text : String, extra : Int) -> String {
+fn justify(text : String, extra : Int32) -> String {
   let gs = @grapheme.grapheme_iter(text).map(fn(g) { g.to_owned() }).to_array()
   let legal = @linebreak.line_break_opportunities(text)
-  let slots : Array[Int] = []
+  let slots : Array[Int32] = []
   let mut byte = 0
   let mut content_seen = false
   for i = 0; i + 1 < gs.length(); i = i + 1 {
@@ -74,7 +75,7 @@ fn justify(text : String, extra : Int) -> String {
 /// Source ranges are untouched. All measurements respect each line's width mode.
 pub fn align_lines(
   lines : Array[@wrap.Line],
-  width : Int,
+  width : Int32,
   alignment : Alignment,
 ) -> Array[String] {
   let result = []

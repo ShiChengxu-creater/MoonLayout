@@ -40,12 +40,12 @@ fn mid_number(c : @data.WordBreak) -> Bool {
 
 ///|
 fn word_break_at(
-  chars : Array[Int],
+  chars : Array[Int32],
   classes : Array[@data.WordBreak],
-  prev : Array[Int],
-  next : Array[Int],
-  i : Int,
-  regional_count : Int,
+  prev : Array[Int32],
+  next : Array[Int32],
+  i : Int32,
+  regional_count : Int32,
 ) -> Bool {
   let raw_a = classes[i - 1]
   let b = classes[i]
@@ -131,7 +131,7 @@ fn word_break_at(
 ///|
 /// Unicode 17 UAX #29 default word boundaries, in UTF-8 bytes. Includes both
 /// endpoints; an empty string has the single boundary [0].
-pub fn word_boundaries(s : String) -> Array[Int] {
+pub fn word_boundaries(s : String) -> Array[Int32] {
   let text = @text.scan(s)
   let classes = text.chars.map(@data.word_break)
   let n = classes.length()
@@ -162,7 +162,7 @@ pub fn word_boundaries(s : String) -> Array[Int] {
 }
 
 ///|
-fn word_content(cp : Int) -> Bool {
+fn word_content(cp : Int32) -> Bool {
   match @data.general_category(cp) {
     Lu | Ll | Lt | Lm | Lo | Nd | Nl | No => true
     _ => false

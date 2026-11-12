@@ -2,22 +2,22 @@
 /// Pluggable discretionary word breaks, expressed as UTF-8 byte offsets within
 /// the supplied word. The wrapping layer validates and deduplicates positions.
 pub(open) trait Hyphenator {
-  fn positions(Self, String) -> Array[Int]
+  fn positions(Self, String) -> Array[Int32]
 }
 
 ///|
 struct Node {
-  children : Map[Int, Int]
-  weights : Array[Int]
+  children : Map[Int32, Int32]
+  weights : Array[Int32]
 }
 
 ///|
 /// Immutable-after-construction Liang pattern trie for ASCII English words.
 pub struct Liang {
   nodes : Array[Node]
-  exceptions : Map[String, Array[Int]]
-  left_min : Int
-  right_min : Int
+  exceptions : Map[String, Array[Int32]]
+  left_min : Int32
+  right_min : Int32
 }
 
 ///|
@@ -42,9 +42,9 @@ fn ascii_lower(word : String) -> String? {
 /// hyphens, e.g. `hy-phen-ation`; unhyphenated exceptions suppress all breaks.
 pub fn Liang::new(
   patterns : Array[String],
-  exceptions? : Array[String] = [],
-  left_min? : Int = 2,
-  right_min? : Int = 3,
+  exceptions~ : Array[String] = [],
+  left_min~ : Int32 = 2,
+  right_min~ : Int32 = 3,
 ) -> Liang {
   let nodes : Array[Node] = [{ children: {}, weights: [], }]
   for pattern in patterns {
@@ -89,7 +89,7 @@ pub fn Liang::new(
       }
     }
   }
-  let lookup : Map[String, Array[Int]] = Map([])
+  let lookup : Map[String, Array[Int32]] = Map([])
   for exception in exceptions {
     let b = StringBuilder()
     let points = []
@@ -124,7 +124,7 @@ pub fn Liang::new(
 
 ///|
 /// Find allowed byte offsets. Non-ASCII words and punctuation return no breaks.
-pub fn Liang::positions(self : Liang, word : String) -> Array[Int] {
+pub fn Liang::positions(self : Liang, word : String) -> Array[Int32] {
   let key = match ascii_lower(word) {
     None => return []
     Some(k) => k

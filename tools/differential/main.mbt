@@ -1,12 +1,13 @@
 ///|
+#derive(ToJson)
 struct Case {
   text : String
-  width : Int
+  width : Int32
   greedy : Array[String]
-  breaks : Array[Int]
+  breaks : Array[Int32]
   nfc : String
   nfkc : String
-} derive(ToJson)
+}
 
 ///|
 fn main {

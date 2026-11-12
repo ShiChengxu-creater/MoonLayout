@@ -2,8 +2,8 @@
 // Unicode 17.0.0 UAX #14 rev. 55. Rules are applied in normative order.
 priv struct Token {
   cls : @data.LineBreak
-  cp : Int
-  start : Int
+  cp : Int32
+  start : Int32
   zwj : Bool
 }
 
@@ -32,7 +32,7 @@ fn hangul(c : @data.LineBreak) -> Bool {
 }
 
 ///|
-fn east_asian(cp : Int) -> Bool {
+fn east_asian(cp : Int32) -> Bool {
   match @data.east_asian_width(cp) {
     F | W | H => true
     _ => false
@@ -45,7 +45,7 @@ fn aksara(t : Token) -> Bool {
 }
 
 ///|
-fn resolve(cp : Int) -> @data.LineBreak {
+fn resolve(cp : Int32) -> @data.LineBreak {
   match @data.line_break(cp) {
     AI | SG | XX => AL
     CJ => NS
@@ -82,7 +82,7 @@ fn tokens(text : @text.Text) -> Array[Token] {
 }
 
 ///|
-fn break_before(ts : Array[Token], i : Int, regional_count : Int) -> Bool {
+fn break_before(ts : Array[Token], i : Int32, regional_count : Int32) -> Bool {
   let left = ts[i - 1]
   let right = ts[i]
   let a = left.cls
@@ -315,7 +315,7 @@ fn break_before(ts : Array[Token], i : Int, regional_count : Int) -> Bool {
 ///|
 /// Default UAX #14 break opportunities as UTF-8 byte offsets. Includes end of
 /// text, excludes start except for empty text (which returns [0]).
-pub fn line_break_opportunities(s : String) -> Array[Int] {
+pub fn line_break_opportunities(s : String) -> Array[Int32] {
   let text = @text.scan(s)
   let ts = tokens(text)
   let result = []
@@ -336,7 +336,7 @@ pub fn line_break_opportunities(s : String) -> Array[Int] {
 
 ///|
 /// Test a UTF-8 byte offset; invalid or interior byte positions return false.
-pub fn is_breakable_at(s : String, byte_index : Int) -> Bool {
+pub fn is_breakable_at(s : String, byte_index : Int32) -> Bool {
   if byte_index < 0 {
     return false
   }

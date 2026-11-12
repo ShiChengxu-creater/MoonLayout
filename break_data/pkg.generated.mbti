@@ -6,21 +6,22 @@ import {
 }
 
 // Values
-pub fn east_asian_width(Int) -> EastAsianWidth
+pub fn east_asian_width(Int32) -> EastAsianWidth
 
-pub fn emoji_property(Int) -> EmojiProperty
+pub fn emoji_property(Int32) -> EmojiProperty
 
-pub fn general_category(Int) -> GeneralCategory
+pub fn general_category(Int32) -> GeneralCategory
 
-pub fn line_break(Int) -> LineBreak
+pub fn line_break(Int32) -> LineBreak
 
-pub fn sentence_break(Int) -> SentenceBreak
+pub fn sentence_break(Int32) -> SentenceBreak
 
-pub fn word_break(Int) -> WordBreak
+pub fn word_break(Int32) -> WordBreak
 
 // Errors
 
 // Types and methods
+#derive(Eq, @debug.Debug)
 pub(all) enum EastAsianWidth {
   A
   F
@@ -28,19 +29,21 @@ pub(all) enum EastAsianWidth {
   N
   W
   Na
-} derive(Eq, @debug.Debug)
+}
 pub fn EastAsianWidth::equal(Self, Self) -> Bool
 pub fn EastAsianWidth::not_equal(Self, Self) -> Bool
 pub fn EastAsianWidth::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum EmojiProperty {
   Other
   Extended_Pictographic
-} derive(Eq, @debug.Debug)
+}
 pub fn EmojiProperty::equal(Self, Self) -> Bool
 pub fn EmojiProperty::not_equal(Self, Self) -> Bool
 pub fn EmojiProperty::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum GeneralCategory {
   Cc
   Cf
@@ -72,11 +75,12 @@ pub(all) enum GeneralCategory {
   Zl
   Zp
   Zs
-} derive(Eq, @debug.Debug)
+}
 pub fn GeneralCategory::equal(Self, Self) -> Bool
 pub fn GeneralCategory::not_equal(Self, Self) -> Bool
 pub fn GeneralCategory::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum LineBreak {
   AI
   AK
@@ -127,11 +131,12 @@ pub(all) enum LineBreak {
   XX
   ZW
   ZWJ
-} derive(Eq, @debug.Debug)
+}
 pub fn LineBreak::equal(Self, Self) -> Bool
 pub fn LineBreak::not_equal(Self, Self) -> Bool
 pub fn LineBreak::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum SentenceBreak {
   CR
   LF
@@ -148,11 +153,12 @@ pub(all) enum SentenceBreak {
   Numeric
   OLetter
   SContinue
-} derive(Eq, @debug.Debug)
+}
 pub fn SentenceBreak::equal(Self, Self) -> Bool
 pub fn SentenceBreak::not_equal(Self, Self) -> Bool
 pub fn SentenceBreak::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum WordBreak {
   CR
   LF
@@ -173,7 +179,7 @@ pub(all) enum WordBreak {
   Single_Quote
   Hebrew_Letter
   Regional_Indicator
-} derive(Eq, @debug.Debug)
+}
 pub fn WordBreak::equal(Self, Self) -> Bool
 pub fn WordBreak::not_equal(Self, Self) -> Bool
 pub fn WordBreak::to_repr(Self) -> @debug.Repr

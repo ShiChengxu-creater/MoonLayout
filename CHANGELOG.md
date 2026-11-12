@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — toolchain maintenance (2026-11-12)
+
+- Migrate deprecated derives, optional argument declarations and integer spellings using the current official MoonBit formatter; regenerate public interfaces.
+- Update the Unicode table generator to emit current syntax and retain generation idempotence.
+- Check, build and test every supported backend, record the actual toolchain and dependencies, and run compatibility CI weekly against the current official release.
+- Record source and packaged public API validation in `docs/TOOLCHAIN_COMPATIBILITY.md`. Package version remains 0.2.0; this maintenance does not publish a Mooncakes release.
+
 ## 0.2.0 — final acceptance (2026-09-30)
 
 - Simplified optimal paragraph breaking with space stretch/shrink and configurable penalties.

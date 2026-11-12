@@ -2,6 +2,7 @@
 // Unicode License v3; see THIRD_PARTY.md. Do not edit.
 
 ///|
+#derive(Eq, Debug)
 pub(all) enum EastAsianWidth {
   A
   F
@@ -9,7 +10,7 @@ pub(all) enum EastAsianWidth {
   N
   W
   Na
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend EastAsianWidth with Eq::{not_equal, equal}
@@ -18,7 +19,7 @@ pub extend EastAsianWidth with Eq::{not_equal, equal}
 pub extend EastAsianWidth with Debug::{to_repr}
 
 ///|
-let east_asian_width_ranges : ReadOnlyArray[(Int, Int, EastAsianWidth)] = [
+let east_asian_width_ranges : ReadOnlyArray[(Int32, Int32, EastAsianWidth)] = [
   (32, 126, Na),
   (161, 161, A),
   (162, 163, Na),
@@ -341,6 +342,6 @@ let east_asian_width_ranges : ReadOnlyArray[(Int, Int, EastAsianWidth)] = [
 
 ///|
 /// Unicode 17.0.0 property. Invalid code points return the default.
-pub fn east_asian_width(codepoint : Int) -> EastAsianWidth {
+pub fn east_asian_width(codepoint : Int32) -> EastAsianWidth {
   lookup(east_asian_width_ranges, codepoint, N)
 }

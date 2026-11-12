@@ -2,12 +2,13 @@
 /// Per internal ASCII space: maximum added cells (stretch) and removed cells
 /// (shrink, capped at one). Negative settings become zero. Penalties are capped
 /// to keep costs finite. This is a simplified paragraph optimizer, not TeX.
+#derive(Eq, Debug)
 pub(all) struct OptimalOptions {
-  stretch : Int
-  shrink : Int
-  line_penalty : Int
-  hyphen_penalty : Int
-} derive(Eq, Debug)
+  stretch : Int32
+  shrink : Int32
+  line_penalty : Int32
+  hyphen_penalty : Int32
+}
 
 ///|
 pub extend OptimalOptions with Eq::{equal, not_equal}
@@ -18,16 +19,16 @@ pub extend OptimalOptions with Debug::{to_repr}
 ///|
 /// Defaults minimize squared nonfinal slack without changing space widths.
 pub fn OptimalOptions::new(
-  stretch? : Int = 0,
-  shrink? : Int = 0,
-  line_penalty? : Int = 1,
-  hyphen_penalty? : Int = 50,
+  stretch~ : Int32 = 0,
+  shrink~ : Int32 = 0,
+  line_penalty~ : Int32 = 1,
+  hyphen_penalty~ : Int32 = 50,
 ) -> OptimalOptions {
   { stretch, shrink, line_penalty, hyphen_penalty, }
 }
 
 ///|
-fn bounded(value : Int, maximum : Int) -> Int {
+fn bounded(value : Int32, maximum : Int32) -> Int32 {
   if value < 0 {
     0
   } else if value > maximum {
@@ -39,7 +40,7 @@ fn bounded(value : Int, maximum : Int) -> Int {
 
 ///|
 // Glue is restricted to internal ASCII spaces. Tabs retain tab-stop semantics.
-fn adjust_glue(line : Line, limit : Int, optimal : OptimalOptions) -> Line {
+fn adjust_glue(line : Line, limit : Int32, optimal : OptimalOptions) -> Line {
   let chars = line.text.iter().to_array()
   let slots = chars.filter(fn(c) { c == ' ' }).length()
   if slots == 0 {
@@ -84,9 +85,9 @@ fn adjust_glue(line : Line, limit : Int, optimal : OptimalOptions) -> Line {
 /// the final line is ragged. Source spans always refer to the unchanged input.
 pub fn optimal_wrap(
   s : String,
-  max_width : Int,
-  opts? : WrapOptions = WrapOptions::new(),
-  optimal? : OptimalOptions = OptimalOptions::new(),
+  max_width : Int32,
+  opts~ : WrapOptions = WrapOptions::new(),
+  optimal~ : OptimalOptions = OptimalOptions::new(),
 ) -> Array[Line] {
   optimal_points(s, max_width, opts, optimal, Map([]))
 }
@@ -94,10 +95,10 @@ pub fn optimal_wrap(
 ///|
 fn optimal_points(
   s : String,
-  max_width : Int,
+  max_width : Int32,
   opts : WrapOptions,
   optimal : OptimalOptions,
-  points : Map[Int, Bool],
+  points : Map[Int32, Bool],
 ) -> Array[Line] {
   if s.is_empty() {
     return []

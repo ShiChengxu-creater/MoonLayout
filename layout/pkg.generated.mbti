@@ -16,17 +16,18 @@ pub fn[H : @hyphen.Hyphenator] layout_hyphenated(String, LayoutStyle, H) -> Arra
 // Errors
 
 // Types and methods
+#derive(Eq, @debug.Debug)
 pub(all) struct LayoutStyle {
-  max_width : Int
+  max_width : Int32
   alignment : @align.Alignment
   ambiguous_wide : Bool
   wrap_algorithm : @wrap.WrapAlgorithm
   break_policy : @wrap.BreakPolicy
-  tab_width : Int
+  tab_width : Int32
   optimal : @wrap.OptimalOptions
-} derive(Eq, @debug.Debug)
+}
 pub fn LayoutStyle::equal(Self, Self) -> Bool
-pub fn LayoutStyle::new(Int, alignment? : @align.Alignment, ambiguous_wide? : Bool, wrap_algorithm? : @wrap.WrapAlgorithm, break_policy? : @wrap.BreakPolicy, tab_width? : Int, optimal? : @wrap.OptimalOptions) -> Self
+pub fn LayoutStyle::new(Int32, alignment? : @align.Alignment, ambiguous_wide? : Bool, wrap_algorithm? : @wrap.WrapAlgorithm, break_policy? : @wrap.BreakPolicy, tab_width? : Int32, optimal? : @wrap.OptimalOptions) -> Self
 pub fn LayoutStyle::not_equal(Self, Self) -> Bool
 pub fn LayoutStyle::to_repr(Self) -> @debug.Repr
 

@@ -16,29 +16,32 @@ pub fn[H : @hyphen.Hyphenator] layout_hyphenated(String, @layout.LayoutStyle, H,
 // Errors
 
 // Types and methods
+#derive(Eq, @debug.Debug)
 pub(all) enum Direction {
   Auto
   LTR
   RTL
-} derive(Eq, @debug.Debug)
+}
 pub fn Direction::equal(Self, Self) -> Bool
 pub fn Direction::not_equal(Self, Self) -> Bool
 pub fn Direction::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub struct LayoutResult {
   original_text : String
   logical_text : String
   lines : Array[@wrap.Line]
-} derive(Eq, @debug.Debug)
+}
 pub fn LayoutResult::equal(Self, Self) -> Bool
 pub fn LayoutResult::not_equal(Self, Self) -> Bool
 pub fn LayoutResult::to_repr(Self) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum Normalization {
   Off
   NFC
   NFKC
-} derive(Eq, @debug.Debug)
+}
 pub fn Normalization::equal(Self, Self) -> Bool
 pub fn Normalization::not_equal(Self, Self) -> Bool
 pub fn Normalization::to_repr(Self) -> @debug.Repr

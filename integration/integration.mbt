@@ -1,10 +1,11 @@
 ///|
 /// Optional normalization before layout. Off preserves input byte coordinates.
+#derive(Eq, Debug)
 pub(all) enum Normalization {
   Off
   NFC
   NFKC
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend Normalization with Eq::{equal, not_equal}
@@ -14,11 +15,12 @@ pub extend Normalization with Debug::{to_repr}
 
 ///|
 /// Auto determines each paragraph's direction from its first strong character.
+#derive(Eq, Debug)
 pub(all) enum Direction {
   Auto
   LTR
   RTL
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend Direction with Eq::{equal, not_equal}
@@ -29,11 +31,12 @@ pub extend Direction with Debug::{to_repr}
 ///|
 /// Line.source/start/end address logical_text, never the pre-normalized input.
 /// Line.text remains logical; aligned_text is visual when bidi is enabled.
+#derive(Eq, Debug)
 pub struct LayoutResult {
   original_text : String
   logical_text : String
   lines : Array[@wrap.Line]
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend LayoutResult with Eq::{equal, not_equal}
@@ -57,9 +60,9 @@ fn normalize(text : String, form : Normalization) -> String {
 pub fn layout(
   text : String,
   style : @layout.LayoutStyle,
-  normalization? : Normalization = Off,
-  bidi? : Bool = false,
-  direction? : Direction = Auto,
+  normalization~ : Normalization = Off,
+  bidi~ : Bool = false,
+  direction~ : Direction = Auto,
 ) -> LayoutResult {
   let logical_text = normalize(text, normalization)
   let lines = @layout.layout(logical_text, style)
@@ -139,7 +142,7 @@ fn visual_lines(
 fn reorder_line(
   line : @wrap.Line,
   para : @bidi.BidiParagraph,
-  scalar_start : Int,
+  scalar_start : Int32,
 ) -> String {
   let raw = @grapheme.grapheme_iter(line.source)
     .map(fn(g) { g.to_owned() })
@@ -213,9 +216,9 @@ pub fn[H : @hyphen.Hyphenator] layout_hyphenated(
   text : String,
   style : @layout.LayoutStyle,
   hyphenator : H,
-  normalization? : Normalization = Off,
-  bidi? : Bool = false,
-  direction? : Direction = Auto,
+  normalization~ : Normalization = Off,
+  bidi~ : Bool = false,
+  direction~ : Direction = Auto,
 ) -> LayoutResult {
   let logical_text = normalize(text, normalization)
   let lines = @layout.layout_hyphenated(logical_text, style, hyphenator)

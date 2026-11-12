@@ -12,15 +12,16 @@ pub using @wrap {
 
 ///|
 /// Logical paragraph layout configuration. Optional integrations live in their own package.
+#derive(Eq, Debug)
 pub(all) struct LayoutStyle {
-  max_width : Int
+  max_width : Int32
   alignment : Alignment
   ambiguous_wide : Bool
   wrap_algorithm : WrapAlgorithm
   break_policy : BreakPolicy
-  tab_width : Int
+  tab_width : Int32
   optimal : OptimalOptions
-} derive(Eq, Debug)
+}
 
 ///|
 pub extend LayoutStyle with Eq::{not_equal, equal}
@@ -31,13 +32,13 @@ pub extend LayoutStyle with Debug::{to_repr}
 ///|
 /// Construct a layout style (greedy by default). Nonpositive widths normalize to one column.
 pub fn LayoutStyle::new(
-  max_width : Int,
-  alignment? : Alignment = Left,
-  ambiguous_wide? : Bool = false,
-  wrap_algorithm? : WrapAlgorithm = Greedy,
-  break_policy? : BreakPolicy = Unicode,
-  tab_width? : Int = 4,
-  optimal? : OptimalOptions = OptimalOptions::new(),
+  max_width : Int32,
+  alignment~ : Alignment = Left,
+  ambiguous_wide~ : Bool = false,
+  wrap_algorithm~ : WrapAlgorithm = Greedy,
+  break_policy~ : BreakPolicy = Unicode,
+  tab_width~ : Int32 = 4,
+  optimal~ : OptimalOptions = OptimalOptions::new(),
 ) -> LayoutStyle {
   {
     max_width,

@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+from datetime import datetime, timezone
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 ROOT = Path(__file__).resolve().parent.parent
@@ -19,6 +20,7 @@ if not MOON:
 steps = []
 EXAMPLES = ('wrap_terminal', 'cjk_mixed', 'justify_paragraph', 'word_boundaries',
             'hyphen_wrap', 'optimal_wrap', 'bidi_paragraph', 'markdown_like')
+started_at = datetime.now(timezone.utc).isoformat()
 
 def run(label, args, cwd=ROOT):
     result = subprocess.run(args, cwd=cwd, stdout=subprocess.PIPE,
@@ -34,6 +36,8 @@ def run(label, args, cwd=ROOT):
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+toolchain = run('toolchain', [MOON, 'version', '--all'])
+dependencies = run('dependencies', [MOON, 'tree'])
 run('initial_format_check', [MOON, 'fmt', '--check'])
 for record in (ROOT / 'testdata/ucd/SHA256SUMS').read_text().splitlines():
     expected, name = record.split('  ')
@@ -66,6 +70,7 @@ run('format_check', [MOON, 'fmt', '--check'])
 example_outputs = {}
 for target in ('native', 'wasm-gc', 'js'):
     run('check_' + target, [MOON, 'check', '--target', target, '--deny-warn'])
+    run('build_' + target, [MOON, 'build', '--target', target, '--deny-warn'])
     run('tests_' + target, [MOON, 'test', '--target', target, '--deny-warn'])
     for example in EXAMPLES:
         output = run(example + '_' + target, [MOON, 'run', 'examples/' + example, '--target', target])
@@ -125,7 +130,9 @@ test "external packaged API" {
 ''', encoding='utf-8')
 for target in ('native', 'wasm-gc', 'js'):
     run('consumer_' + target, [MOON, 'test', '-p', 'acceptance/consumer', '--target', target, '--deny-warn'], cwd=consumer)
-summary = {'status': 'pass', 'official_cases': {'line': 19338, 'word': 1944, 'sentence': 512},
+summary = {'status': 'pass', 'started_at': started_at,
+           'toolchain': toolchain, 'dependencies': dependencies,
+           'official_cases': {'line': 19338, 'word': 1944, 'sentence': 512},
            'targets': ['native', 'wasm-gc', 'js'], 'example_runs': len(EXAMPLES) * 3,
            'package': str(archive), 'package_sha256': digest(archive),
            'consumer': str(consumer), 'steps': steps,
