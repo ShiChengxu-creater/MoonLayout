@@ -2,6 +2,8 @@
 
 纯 MoonBit 的 Unicode 段落布局库。`0.2.1` 更新当前工具链兼容性，包含最优换行、英文 Liang 连字符、BiDi／归一化集成，支持 native、wasm-gc、JavaScript。
 
+**[0.2.1](https://mooncakes.io/docs/ShiChengxu/moonlayout@0.2.1) 已发布到 Mooncakes**，从注册表独立安装后的三后端 check/build/test 与公开 API 复验全部通过。发布提交、校验和及复验结果见 [发布记录](docs/RELEASE_0.2.1.md)。
+
 ## 工具链兼容性
 
 2026-11-12 源码维护已使用官方当前工具链 `moon 0.1.20261104`、`moonc v0.10.20+65efd5b93` 验证。已迁移弃用语法并同步 Unicode 表生成器；现有依赖可用。三后端检查、构建、测试及公开 API 消费验证见 [兼容性记录](docs/TOOLCHAIN_COMPATIBILITY.md)。CI 在推送、PR 和每周一使用官方当前工具链复验，并保存实际版本与日志。

@@ -1,0 +1,24 @@
+{
+  "module": "ShiChengxu/moonlayout",
+  "version": "0.2.1",
+  "source": "Mooncakes registry",
+  "local_workspace_override": false,
+  "targets": {
+    "native": {
+      "check": "passed",
+      "build": "passed",
+      "public_api_tests": "1/1"
+    },
+    "wasm-gc": {
+      "check": "passed",
+      "build": "passed",
+      "public_api_tests": "1/1"
+    },
+    "js": {
+      "check": "passed",
+      "build": "passed",
+      "public_api_tests": "1/1"
+    }
+  },
+  "dependency_tree": "└─ ShiChengxu/moonlayout -> ShiChengxu/moonlayout@0.2.1\n   ├─ kawaz/grapheme -> kawaz/grapheme@0.10.4\n   ├─ moonbit-community/bidi -> moonbit-community/bidi@0.5.0\n   ├─ moonbit-community/normalization -> moonbit-community/normalization@0.5.0\n   │  └─ moonbit-community/ucd -> moonbit-community/ucd@0.5.0\n   ├─ moonbit-community/unicodewidth -> moonbit-community/unicodewidth@0.2.1\n   │  └─ moonbitlang/x -> moonbitlang/x@0.4.44\n   └─ moonbitlang/x -> moonbitlang/x@0.4.44"
+}

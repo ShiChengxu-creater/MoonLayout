@@ -11,3 +11,11 @@ python scripts/verify_published.py --version 0.2.1 --out docs/evidence/registry-
 ```
 
 该脚本拒绝本地 workspace 替代，从 Mooncakes 安装指定版本，在 native、wasm-gc、JS 分别运行严格 check/build/test，验证布局、UTF-8 原文、分段、最优换行、连字符、BiDi 和 NFKC 公开 API。
+
+## 实际发布与复验
+
+[0.2.1](https://mooncakes.io/docs/ShiChengxu/moonlayout@0.2.1) 已于 2026-11-14 09:12（北京时间）发布，发布账号为 ShiChengxu。源码提交为 [3cdf19f](https://github.com/ShiChengxu-creater/MoonLayout/commit/3cdf19f51f399be5678603869e4d43d5742a5aca)，其 [GitHub CI](https://github.com/ShiChengxu-creater/MoonLayout/actions/runs/43538636482) 在发布前通过；版本标签 `v0.2.1` 指向该提交。
+
+服务端 SHA-256 为 `ea0c46569a9a9bbc2006f677ae2e9cbc2a0c6c2434fcb6bd4dfd5b7bac7f3b8b`，与本地上传 ZIP 一致。注册表已将 0.2.1 列为最新版本。
+
+从 Mooncakes 安装确切 0.2.1 后，native、wasm-gc、JS 的严格 check/build/test 均通过，每个后端的公开 API 测试为 1/1。没有本地 workspace 替代。机器可读记录见 [发布元数据](evidence/release-0.2.1.json) 和 [注册表复验](evidence/registry-0.2.1.json)。

@@ -1,0 +1,22 @@
+{
+  "module": "ShiChengxu/moonlayout",
+  "version": "0.2.1",
+  "status": "published",
+  "registry_created_at": "2026-11-14T01:12:36.690339+00:00",
+  "source_commit": "3cdf19f51f399be5678603869e4d43d5742a5aca",
+  "zip_sha256": "ea0c46569a9a9bbc2006f677ae2e9cbc2a0c6c2434fcb6bd4dfd5b7bac7f3b8b",
+  "registry_checksum_matches": true,
+  "toolchain": {
+    "moon": "0.1.20261104 (940aa18 2026-11-04)",
+    "moonc": "v0.10.20+65efd5b93 (2026-11-05)"
+  },
+  "prepublication_ci": {
+    "repo": "MoonLayout",
+    "id": 43538636482,
+    "sha": "3cdf19f51f399be5678603869e4d43d5742a5aca",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/ShiChengxu-creater/MoonLayout/actions/runs/43538636482"
+  },
+  "registry_url": "https://mooncakes.io/docs/ShiChengxu/moonlayout@0.2.1"
+}
