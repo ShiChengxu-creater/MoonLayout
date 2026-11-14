@@ -4,6 +4,9 @@ On 2026-11-12, Codex assisted with official-toolchain compatibility maintenance,
 formatter migrations, generator and CI updates, and recorded local verification.
 The maintenance record distinguishes source checks from registry publication.
 
+On 2026-11-14, assistance also covered patch release preparation and an exact-version
+registry consumer verifier. Actual publication and consumer results are recorded separately.
+
 Codex assisted with implementation, tests, documentation and local validation
 of M0–M4. The human supplied goal.md, the acceptance scope, Git identity and
 commit/push constraints. Algorithm and edge-policy choices are documented in

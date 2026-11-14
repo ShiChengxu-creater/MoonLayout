@@ -6,7 +6,7 @@ The full matrix is fmt, warning-free check/build/test for native, wasm-gc and js
 
 Tests also cover UTF-8 offsets, empty input, invalid indices, CRLF and blank lines, oversized graphemes, emoji/combining sequences, tab stops, ambiguous width, CJK justification, alignment widths and exact source reconstruction. Native has 3 additional generator tests because the tool is native-only.
 
-For external consumption, create a separate `moon.work` with two members: this repository and a new consumer module whose moon.mod imports `ShiChengxu/moonlayout@0.2.0`. The consumer moon.pkg imports `"ShiChengxu/moonlayout" @ml`. Use `@ml.LayoutStyle::new(12, alignment=Center)` and `@ml.layout(...)`; enum arguments are inferred from their expected type.
+For external consumption, create a separate `moon.work` with two members: this repository and a new consumer module whose moon.mod imports `ShiChengxu/moonlayout@0.2.1`. The consumer moon.pkg imports `"ShiChengxu/moonlayout" @ml`. Use `@ml.LayoutStyle::new(12, alignment=Center)` and `@ml.layout(...)`; enum arguments are inferred from their expected type.
 The verification script builds a fresh consumer against the packaged artifact, not just the development checkout, on all three backends.
 
 Correctness tests do not download Unicode data, read the system clock or access the network. Benchmarks deliberately read a monotonic timer. Dependency resolution can use the MoonBit registry before compilation.
